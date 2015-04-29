@@ -1,0 +1,91 @@
+﻿<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="javascript:void(0)" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i>首页</a> <a href="javascript:void(0)" class="current">修改问卷</a> </div>
+        <!--<h1>问卷列表</h1>-->
+    </div>
+    <div class="container-fluid">
+        <!--<hr>-->
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <!--<div class="widget-title">
+                        <span class="icon"><i class="icon-th"></i></span>
+                        <h5>问卷列表</h5>
+                    </div>-->
+                    <div class="widget-content nopadding">
+                        <form id="surveyInfos" class="form-horizontal" ng-submit ="updateSurveyInfo()">
+                            <div class="control-group">
+                                <div class="controls">
+                                    注意：修改问卷时，问卷结构不可改变，仅能修改问卷内容。                                       
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">问卷标题 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span9" placeholder="问卷标题" required ng-model="ret.SurveyInfo.SurveyName" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">题目数量 :</label>
+                                <div class="controls">
+                                    <input type="number" class="span2" placeholder="题目数量" required ng-model="ret.SurveyInfo.QuestionCount" ng-disabled="true" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">需填信息 :</label>
+                                <div class="controls">
+                                    <button type="button" class="btn btn-default span2" data-maxlength="9" data-maxlengthhtml="已选择" placeholder="请选择" ng-model="ret.SurveyInfo.RequiredInfos" data-html="1" data-multiple="1" data-animation="am-flip-x" ng-options="require.key as require.value for require in requireInfo" bs-select>
+                                        <span class="caret"></span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div ng-repeat="question in ret.QuestionInfo">
+                                <div class="control-group">
+                                    <label class="control-label">题目 {{$index + 1}} :</label>
+                                    <div class="controls">
+                                        <textarea class="span11" style="margin: 0px; width: 300px; height: 77px;" ng-model="question.QuestionTitle" required></textarea>
+                                    </div>
+                                    
+                                     <div class="control-group">
+                                        <label class="control-label">定项选择 :</label>
+                                        <div class="controls">
+                                            <input type="checkbox" ng-model="question.IsOrientation" value="true" checked ="checked"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label">选项数量 :</label>
+                                        <div class="controls">
+                                            <input type="number" class="span2" placeholder="选项数量(1-26)" required ng-model="question.QuestionOptionsCount" ng-change="insertOpts(question)" min="1" max="26" ng-disabled="true" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">需选数量 :</label>
+                                        <div class="controls">
+                                            <input type="number" class="span2" placeholder="需选数量(1-26)" required min="1" max="{{question.QuestionOptionsCount}}" ng-model="question.RequiredOptionsCount" ng-disabled ="!question.IsOrientation" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div ng-repeat="option in question.Options">
+                                            <label class="control-label">{{ $index + 1 | OptNumToChar}}: </label>
+                                            <div class="controls">
+                                                <input type="text" class="span6" placeholder="选项{{$index + 1}}" required ng-model="option.OptionValue" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="form-actions">
+                        <a href="/index" class="btn btn-success" >取消</a>
+                        <button type="submit" class="btn btn-success" form ="surveyInfos" >确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,35 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ include file="EF.Utility.CS.ttinclude"#>
+<#@ output extension=".cs"#>	//输出文件扩展名
+<#
+MetadataLoader loader = new MetadataLoader(this);
+string inputFile = @"..\\DFHE.Survey.Model\\SurveyModel.edmx";					//EF DBFirst 创建的.edmx文件
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+var fileManager = EntityFrameworkTemplateFileManager.Create(this);
+#>
+<#
+foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))	//遍历EF得到的实体集合
+{
+    fileManager.StartNewFile("I" + entity.Name + "Repository.cs"); 
+#>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DFHE.Survey.IDAL;
+using DFHE.Survey.Model;
+
+namespace DFHE.Survey.DAL
+{
+	public interface I<#=entity.Name#>Repository :IBaseRepository<<#=entity.Name#>>
+    {
+
+    }
+}
+<#
+}
+	fileManager.Process();
+#>
+

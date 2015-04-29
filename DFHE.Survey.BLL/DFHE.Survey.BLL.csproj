@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B220DAF0-6059-49FC-89C5-2C6514DA14E0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DFHE.Survey.BLL</RootNamespace>
+    <AssemblyName>DFHE.Survey.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BLL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\BaseService.cs" />
+    <Compile Include="OptionInfoService.cs">
+      <DependentUpon>BLL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionInfoService.cs">
+      <DependentUpon>BLL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RespondentInfoService.cs">
+      <DependentUpon>BLL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SurveyInfoService.cs">
+      <DependentUpon>BLL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SurveyResultService.cs">
+      <DependentUpon>BLL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfoService.cs">
+      <DependentUpon>BLL.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="BLL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BLL.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DFHE.Survey.IBLL\DFHE.Survey.IBLL.csproj">
+      <Project>{d9345433-5bed-411d-963b-71651ef33244}</Project>
+      <Name>DFHE.Survey.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFHE.Survey.IDAL\DFHE.Survey.IDAL.csproj">
+      <Project>{2b9e702f-f895-4572-b74f-6a290d4e8461}</Project>
+      <Name>DFHE.Survey.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFHE.Survey.Model\DFHE.Survey.Model.csproj">
+      <Project>{684b02e7-f26e-4f00-a8bc-a7f8e8151163}</Project>
+      <Name>DFHE.Survey.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DFHE.Survey.Utility\DFHE.Survey.Utility.csproj">
+      <Project>{bb1b81ac-06b0-4c98-ad73-e907c387541b}</Project>
+      <Name>DFHE.Survey.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

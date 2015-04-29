@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DFHE.SurveyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DFHESurveyModelStoreContainer">
+    <EntitySet Name="OptionInfo" EntityType="DFHE.SurveyModel.Store.OptionInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuestionInfo" EntityType="DFHE.SurveyModel.Store.QuestionInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RespondentInfo" EntityType="DFHE.SurveyModel.Store.RespondentInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SurveyInfo" EntityType="DFHE.SurveyModel.Store.SurveyInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SurveyResult" EntityType="DFHE.SurveyModel.Store.SurveyResult" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserInfo" EntityType="DFHE.SurveyModel.Store.UserInfo" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="OptionInfo">
+    <Key>
+      <PropertyRef Name="OptionId" />
+    </Key>
+    <Property Name="OptionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="QuesionId" Type="int" Nullable="false" />
+    <Property Name="OptionKey" Type="nvarchar" Nullable="false" MaxLength="2" />
+    <Property Name="OptionValue" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="QuestionInfo">
+    <Key>
+      <PropertyRef Name="QuestionId" />
+    </Key>
+    <Property Name="QuestionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SurveyId" Type="int" Nullable="false" />
+    <Property Name="QuestionTitle" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="QuestionOptionsCount" Type="int" Nullable="false" />
+    <Property Name="RequiredOptionsCount" Type="int" Nullable="false" />
+    <Property Name="IsOrientation" Type="bit" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="RespondentInfo">
+    <Key>
+      <PropertyRef Name="RespondentId" />
+    </Key>
+    <Property Name="RespondentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RespondentName" Type="nvarchar" MaxLength="8" />
+    <Property Name="MobilePhone" Type="nvarchar" MaxLength="16" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="2" />
+    <Property Name="EduBackground" Type="nvarchar" MaxLength="16" />
+    <Property Name="Occupation" Type="nvarchar" MaxLength="50" />
+    <Property Name="Location" Type="nvarchar" MaxLength="16" />
+    <Property Name="MaritalStatus" Type="nvarchar" MaxLength="16" />
+    <Property Name="Referrer" Type="nvarchar" MaxLength="16" />
+    <Property Name="Suggestion" Type="nvarchar" MaxLength="256" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="SurveyInfo">
+    <Key>
+      <PropertyRef Name="SurveyId" />
+    </Key>
+    <Property Name="SurveyId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SurveyName" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="QuestionCount" Type="int" Nullable="false" />
+    <Property Name="SurveyStatus" Type="int" Nullable="false" />
+    <Property Name="StaticUrl" Type="nvarchar" Nullable="false" MaxLength="512" />
+    <Property Name="RequiredInfos" Type="nvarchar" MaxLength="32" />
+    <Property Name="CreateId" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="UpDateTime" Type="datetime" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="SurveyResult">
+    <Key>
+      <PropertyRef Name="SurveyResultId" />
+    </Key>
+    <Property Name="SurveyResultId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SurveyId" Type="int" Nullable="false" />
+    <Property Name="RespondentId" Type="int" Nullable="false" />
+    <Property Name="QuestionId" Type="int" Nullable="false" />
+    <Property Name="SelectedOptions" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="RealName" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+</Schema>

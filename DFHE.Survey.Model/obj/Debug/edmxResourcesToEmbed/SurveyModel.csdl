@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DFHE.SurveyModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="OptionInfoes" EntityType="DFHE.SurveyModel.OptionInfo" />
+    <EntitySet Name="QuestionInfoes" EntityType="DFHE.SurveyModel.QuestionInfo" />
+    <EntitySet Name="RespondentInfoes" EntityType="DFHE.SurveyModel.RespondentInfo" />
+    <EntitySet Name="SurveyInfoes" EntityType="DFHE.SurveyModel.SurveyInfo" />
+    <EntitySet Name="SurveyResults" EntityType="DFHE.SurveyModel.SurveyResult" />
+    <EntitySet Name="UserInfoes" EntityType="DFHE.SurveyModel.UserInfo" />
+  </EntityContainer>
+  <EntityType Name="OptionInfo">
+    <Key>
+      <PropertyRef Name="OptionId" />
+    </Key>
+    <Property Name="OptionId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="QuesionId" Type="Int32" Nullable="false" />
+    <Property Name="OptionKey" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="OptionValue" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="QuestionInfo">
+    <Key>
+      <PropertyRef Name="QuestionId" />
+    </Key>
+    <Property Name="QuestionId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="SurveyId" Type="Int32" Nullable="false" />
+    <Property Name="QuestionTitle" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="QuestionOptionsCount" Type="Int32" Nullable="false" />
+    <Property Name="RequiredOptionsCount" Type="Int32" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Type="Boolean" Name="IsOrientation" />
+  </EntityType>
+  <EntityType Name="RespondentInfo">
+    <Key>
+      <PropertyRef Name="RespondentId" />
+    </Key>
+    <Property Name="RespondentId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RespondentName" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+    <Property Name="MobilePhone" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Gender" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="EduBackground" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Occupation" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Location" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="MaritalStatus" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Referrer" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Suggestion" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SurveyInfo">
+    <Key>
+      <PropertyRef Name="SurveyId" />
+    </Key>
+    <Property Name="SurveyId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="SurveyName" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="QuestionCount" Type="Int32" Nullable="false" />
+    <Property Name="SurveyStatus" Type="Int32" Nullable="false" />
+    <Property Name="StaticUrl" Type="String" Nullable="false" MaxLength="512" Unicode="true" FixedLength="false" />
+    <Property Name="RequiredInfos" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+    <Property Name="CreateId" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpDateTime" Type="DateTime" Precision="3" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SurveyResult">
+    <Key>
+      <PropertyRef Name="SurveyResultId" />
+    </Key>
+    <Property Name="SurveyResultId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="SurveyId" Type="Int32" Nullable="false" />
+    <Property Name="RespondentId" Type="Int32" Nullable="false" />
+    <Property Name="QuestionId" Type="Int32" Nullable="false" />
+    <Property Name="SelectedOptions" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+    <Property Name="RealName" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

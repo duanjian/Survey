@@ -1,0 +1,485 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>ddd</title>
+    <link type="text/css" href="/CSS/base.css" rel="Stylesheet" />
+    <link type="text/css" href="/CSS/common.css" rel="Stylesheet" />
+    <script type="text/javascript">
+        if (/Android (\d+\.\d+)/.test(navigator.userAgent)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                var phoneScale = parseInt(window.screen.width) / 640;
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <script src="/Assets/js/jquery.min.js"></script>
+    <script src="/Assets/js/jquery.blockUI.js"></script>
+    <script language="javascript" type="text/javascript">
+        var regTel = /^((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/; //手机座机
+        var regAge = /^\d{1,2}$/; //年龄
+        jQuery(function (jq) {
+            var jqquestionitems = jq(".question .question-item");
+            var questioncount = jqquestionitems.length;
+            var currentquestion = 0;
+            var _options = "";
+
+            function nextClick(ev) {
+                var jqthis = jq(ev.toElement);
+
+                if (_options.length > 0) {
+                    _options += ",";
+                }
+                _options += jqthis.attr("data-option");
+                var temp = "";
+                var reqOpts = jqthis.attr("data-req");
+                if (reqOpts > 1) {
+                    var count = 0;
+                    jq.each(jq(jqquestionitems[currentquestion]).find("input[type='checkbox']"), function (i, n) {
+                        if (jq(n).is(":checked")) {
+                            count++;
+                            if (temp.length > 0) {
+                                temp += "@";
+                            }
+                            temp += jq(n).val();
+                        }
+
+                    });
+                    if (count > reqOpts) {
+                        //alert("只能选择3项");
+                        jq.blockUI({
+                            message: "<div class='alert'><div class='text'>只能选择" + reqOpts +"项！</div><div class='button-link' onclick='javascript:jQuery.unblockUI();'>关闭</div></div>", css: {
+                                left:
+                                        25, top: "20%", width: 591, height: 431, "background-color": "transparent"
+                            }
+                        });
+                        temp = "";
+                        return;
+                    } else if (count < reqOpts) {
+                        //alert("请选择3项后，点击下一步");
+                        jq.blockUI({
+                            message: "<div class='alert'><div class='text'>请选择"+ reqOpts +"项后，<br />点击下一步！</div><div class='button-link'  onclick='javascript:jQuery.unblockUI();'>关闭</div></div>", css: {
+                                left:
+                                        25, top: "20%", width: 591, height: 431, "background-color": "transparent"
+                            }
+                        });
+                        temp = "";
+                        return;
+                    }
+                }else if(reqOpts == 1) {
+                    jq.each(jq(jqquestionitems[currentquestion]).find("input[type='radio']"), function (i, n) {
+                        if (jq(n).is(":checked")) {
+                            temp += jq(n).val();
+                        }
+
+                    });
+                } else if (reqOpts == 0) {
+                    jq.each(jq(jqquestionitems[currentquestion]).find("input[type='checkbox']"), function (i, n) {
+                        if (jq(n).is(":checked")) {                            
+                            if (temp.length > 0) {
+                                temp += "@";
+                            }
+                            temp += jq(n).val();
+                        }
+                    });
+                }
+                
+                if (temp.length > 0) {
+                    _options += "#" + temp;
+                    if (currentquestion + 1 < questioncount) {
+                        currentquestion++;
+                        jq(".survey .content").html(jqquestionitems[currentquestion]);
+                        jq(".survey .content input").change(function () {
+                            jq.each(jq(".survey .content input"), function (i, n) {
+                                jq(this).prev("span").removeClass("crclsel");
+                                if (jq(this).is(":checked")) {
+                                    jq(this).prev("span").addClass("crclsel");
+                                }
+                            });
+                            var jqthisselection = jq(this);
+                            if (jqthisselection.context.checked)
+                                jqthisselection.prev("span").addClass("crclsel");
+                            else
+                                jqthisselection.prev("span").removeClass("crclsel");
+                        });
+                        jq("div.question-item .next").unbind("click");
+                        jq("div.question-item .next").bind("click", function (e) {
+                            nextClick(e);
+                        });
+                        jq("div.question-item .last").unbind("click");
+                        jq("div.question-item .last").bind("click", function (e) {
+                            lastClick(e);
+                        });
+                    }
+                    else {
+                        jq(".survey .content").html(jq(".sign .listitem"));
+                        jq(".survey .action").html(jq(".sign .action"));
+                    }
+                } else {
+                    jq.blockUI({
+                        message: "<div class='alert'><div class='text'>请选择答案！</div><div class='button-link'  onclick='javascript:jQuery.unblockUI();'>关闭</div></div>", css: {
+                            left:
+                                    25, top: "20%", width: 591, height: 431, "background-color": "transparent"
+                        }
+                    });
+                }
+            }
+
+            jq("div.question-item .last").bind("click", function (ev) {
+                lastClick(ev);
+            });
+            function lastClick(ev) {
+                var jqthis = jq(ev.toElement);
+                var op = _options.split(',');
+                if (op != null && op.length > 0) {
+                    var _w = "";
+                    for (var i = 0; i < op.length; i++) {
+                        var cop = op[i].split('#');
+                        if (cop != null && cop.length > 1) {
+                            if (cop[0] == jqthis.attr("data-option")) {
+                                _w = op[i];
+                                currentquestion--;
+                                if (currentquestion < 0) {
+                                    currentquestion = 0;
+                                }
+                                jq(".survey .content").html(jqquestionitems[currentquestion]);
+                                jq(".survey .content input").change(function () {
+                                    var jqthisselection = jq(this);
+                                    if (jqthisselection.context.checked)
+                                        jqthisselection.prev("span").addClass("crclsel");
+                                    else
+                                        jqthisselection.prev("span").removeClass("crclsel");
+                                });
+                                jq("div.question-item .next").unbind("click");
+                                jq("div.question-item .next").bind("click", function (e) {
+                                    nextClick(e);
+                                });
+                                jq("div.question-item .last").unbind("click");
+                                jq("div.question-item .last").bind("click", function (e) {
+                                    lastClick(e);
+                                });
+                                
+                                if (jqthis.attr("data-req") > 1 ) {
+                                    var getTemp = cop[1].split('@');
+                                    jq.each(jq(jqquestionitems[currentquestion]).find("input[type='checkbox']"), function (i, n) {
+                                        for (var j = 0; j < getTemp.length; j++) {
+                                            if (jq(n).val() == getTemp[j]) {
+                                                jq(n).attr("checked", true);
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    jq.each(jq(jqquestionitems[currentquestion]).find("input[type='radio']"), function (i, n) {
+                                        if (jq(n).val() == cop[1]) {
+                                            jq(n).attr("checked", true);
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    _options = ("," + _options).replace("," + _w, "");
+                    _options = _options.substring(1, _options.length);
+                }
+            }
+
+            jq("#submit").click(function () {
+                var jqusername = jq("#username");
+                var jqmobilephone = jq("#mobilephone");
+                var jqage = jq("#age");
+                var jqtui = jq.trim(jq("#tuijian").val());
+                var jqloc = jq.trim(jq('#location').val());
+                var jqsug = jq.trim(jq('#suggestion').val());
+                var isval = true;
+                jq("#tip_u").text("");
+                jq("#tip_m").text("");
+                jq("#tip_a").text("");
+
+                                  
+                     if (jqusername.val() == "") {
+                         jq("#tip_u").text("请输入您的真实姓名");
+                         isval = false;
+                     }
+
+                                                                
+                
+                 
+                                                                                 
+                    if (jq.trim(jqage.val()) == "") {
+                        jq("#tip_a").text("请输入您的年龄");
+                        isval = false;
+
+                    } else if (!regAge.test(jqage.val())) {
+                        jq("#tip_a").text("年龄格式不正确");
+                        isval = false;
+                    }
+                
+                
+                 
+                
+                if (isval) {
+                    var _posturl = "http://" + location.host + "/SurveyInfo/SubmitSurvey";
+                    
+                    var _postData = 'SurveyId=88';
+                                                                    _postData += "&Username=" + encodeURIComponent(jqusername.val());
+                                                                                            _postData += "&Age=" + jqage.val();
+                                            
+                    _postData += "&Options=" + encodeURIComponent(_options);
+
+                    jq.ajax({
+                        type: "POST",
+                        url: _posturl,
+                        data: _postData
+                    });
+                    jq(".survey .action").html("");
+
+                    //jq(".wrapper .content").html(jq(".result").html());
+                    //加载第二页的内容
+                    //jq(".wrapper").addClass("done");
+                    jq.blockUI({
+                        message: "<div class='end'><div class='button-link'>我完成任务了！</div></div>", css: {
+                            left:
+                                    25, top: "20%", width: 591, height: 431, "background-color": "transparent"
+                        }
+                    });
+                }
+            });
+
+            jq("#username").blur(function () {
+                var jqusername = jq(this);
+                if (jqusername.val() == "") {
+                    jq("#tip_u").text("请输入您的真实姓名");
+                }
+                else {
+                    jq("#tip_u").text("");
+                }
+            });
+
+            jq("#mobilephone").blur(function () {
+                var jqmobilephone = jq(this);
+                if (jqmobilephone.val() == "") {
+                    jq("#tip_m").text("请输入您的电话号码");
+                }
+                else {
+                    if (!regTel.test(jqmobilephone.val())) {
+                        jq("#tip_m").text("电话号码格式错误");
+                    }
+                    else {
+                        jq("#tip_m").text("");
+                    }
+                }
+            });
+
+            jq("#age").blur(function () {
+                var jqage = jq(this);
+                jq("#tip_a").text("");
+                if (jq.trim(jqage.val()) == "") {
+                    jq("#tip_a").text("请输入您的年龄");
+                } else if (!regAge.test(jqage.val())) {
+                    jq("#tip_a").text("年龄格式不正确");
+                }
+            });
+
+            jq("#location").blur(function () {
+                var jqloc = jq(this);
+                jq("#tip_l").text("");
+                if (jq.trim(jqloc.val()) == "") {
+                    jq("#tip_l").text("请输入您的所在地");
+                } 
+            });
+
+            jq("#suggestion").blur(function () {
+                var jqsu = jq(this);
+                jq("#tip_su").text("");
+                if (jq.trim(jqsu.val()) == "") {
+                    jq("#tip_su").text("请输入您的意见");
+                } 
+            });
+          
+
+            jq("#tuijian").blur(function () {
+                var jqre = jq(this);
+                jq("#tip_t").text("");
+                if (jq.trim(jqre.val()) == "") {
+                    jq("#tip_t").text("请输入推荐人");
+                } 
+            });
+
+
+            jq(document).ready(function () {
+                jq.blockUI({
+                    message: "<div class='start'><div class='button-link'>帮我做个问卷吧！</div></div>", css: {
+                        left:
+                                25, top: "20%", width: 591, height: 431, "background-color": "transparent"
+                    }
+                });
+                jq(".wrapper").addClass("home");
+                //jq(".wrapper .action").append("<div class='button'><div class='button-link'>开始测试</div></div>");
+                jq(".button-link").click(function () {
+                    jq.unblockUI();
+                });
+                //加载第二页的内容
+                jq(".wrapper").addClass("survey");
+                /*加载第一个调查*/
+                if (jqquestionitems.length > 0) {
+                    jq(".survey .content").html(jqquestionitems[currentquestion]);
+                    jq(".survey .content input").change(function () {
+                        jq.each(jq(".survey .content input"), function (i, n) {
+                            jq(this).prev("span").removeClass("crclsel");
+                            if (jq(this).is(":checked")) {
+                                jq(this).prev("span").addClass("crclsel");
+                            }
+                        });
+                        var jqthisselection = jq(this);
+                        if (jqthisselection.context.checked)
+                            jqthisselection.prev("span").addClass("crclsel");
+                        else
+                            jqthisselection.prev("span").removeClass("crclsel");
+                    });
+                    jq("div.question-item .next").bind("click", function (ev) {
+                        nextClick(ev);
+                    });
+
+                }
+                // });
+            });           
+        });
+    </script>
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+    <div class="header">
+    </div>
+    <div class="wrapper">
+        <div class="subject">
+            <span style="float: right; font-size: 24px; font-weight: bold; padding-top: 7px">共2题</span>
+        </div>
+        <div class="content">
+        </div>
+        <div class="action">
+        </div>
+    </div>
+    <div class="question">
+                <div class="question-item">
+            <h1>1、1</h1>
+                        <ul>
+                                <li class="option-first">
+                    <label for="rdo235752">
+                        <span class="crcl">A</span>
+                        <input type="radio" name="rdo235" id="rdo235752" value="1" />1
+                    </label>
+                </li>
+                                <li class="option-first">
+                    <label for="rdo235753">
+                        <span class="crcl">B</span>
+                        <input type="radio" name="rdo235" id="rdo235753" value="2" />2
+                    </label>
+                </li>
+                                <li class="option-first">
+                    <label for="rdo235754">
+                        <span class="crcl">C</span>
+                        <input type="radio" name="rdo235" id="rdo235754" value="3" />3
+                    </label>
+                </li>
+                            </ul>
+                        
+                        
+            
+                                <div class="question-done">
+                    <a class="next" href="javascript:void(0);" data-req="1" data-option="236">下一步</a>
+                </div>
+                        
+                    </div>
+                <div class="question-item">
+            <h1>2、2</h1>
+                        <ul>
+                                <li class="option-first">
+                    <label for="chk236755">
+                        <span class="crcl">A</span>
+                        <input type="checkbox" name="chk236" id="chk236755" value="1" />1
+                    </label>
+                </li>
+                                <li class="option-first">
+                    <label for="chk236756">
+                        <span class="crcl">B</span>
+                        <input type="checkbox" name="chk236" id="chk236756" value="2" />2
+                    </label>
+                </li>
+                                <li class="option-first">
+                    <label for="chk236757">
+                        <span class="crcl">C</span>
+                        <input type="checkbox" name="chk236" id="chk236757" value="3" />3
+                    </label>
+                </li>
+                                <li class="option-first">
+                    <label for="chk236758">
+                        <span class="crcl">D</span>
+                        <input type="checkbox" name="chk236" id="chk236758" value="4" />4
+                    </label>
+                </li>
+                                <li class="option-first">
+                    <label for="chk236759">
+                        <span class="crcl">E</span>
+                        <input type="checkbox" name="chk236" id="chk236759" value="5" />5
+                    </label>
+                </li>
+                            </ul>
+                        
+                        
+                        
+                                <div class="question-done">
+                    <a class="last" href="javascript:void(0);" data-req="0" data-option="236">上一步</a>&nbsp;&nbsp;
+                    <a class="next" href="javascript:void(0);" data-req="0" data-option="237">下一步</a>
+                </div>
+            
+                    </div>
+            </div>
+    <div class="sign">
+        <div class="listitem">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                <tr>
+                    <td class="listitem-info">
+                        <label for="username" class="text">
+                            您的姓名：</label>
+                        <input type="text" id="username" maxlength="50" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="listitem-tip">
+                        <span id="tip_u"></span>
+                    </td>
+                </tr>
+                                                                                                                                                                                                                                                <tr>
+                    <td class="listitem-info">
+                        <label for="age" class="text">
+                            您的年龄：</label>
+                        <input type="text" id="age" maxlength="2" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="listitem-tip">
+                        <span id="tip_a"></span>
+                    </td>
+                </tr>
+                                                                                                                                                            </table>
+        </div>
+        <div class="action">
+            <input type="button" id="submit" value="提交" class="command-button" />
+        </div>
+    </div>
+    <div class="result">
+        <div class="message">
+            感谢您的参与!~
+        </div>
+        <div class="tip">
+        </div>
+    </div>
+</body>
+</html>

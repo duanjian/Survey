@@ -1,0 +1,7 @@
+﻿.wrapper .subject{background:url(image/survey-content-subject.png) center center no-repeat; }
+.wrapper .question{ font-family:微软雅黑;padding:0px;padding-left:54px;margin-top:45px;}
+.wrapper .question .question-item{display:none;}
+.wrapper .question .question-item h1{ font-size:30px; color:#131313;font-family:微软雅黑;}
+.wrapper .question .question-item ul li{ font-size:30px; color:#535353; height:60px; line-height:60px;font-family:微软雅黑;padding-top:29px;padding-bottom:29px;padding-left:45px;}
+.wrapper .question .question-item ul li.option-first{padding-top:46px;}
+.wrapper .question .question-item ul li span.option-flag{display:inline-block;width:59px; background:url(image/option-flag.png) center center no-repeat;text-align:center;margin-right:26px;}

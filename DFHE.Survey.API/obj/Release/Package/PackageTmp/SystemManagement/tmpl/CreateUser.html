@@ -1,0 +1,38 @@
+﻿<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title">新增用户</h4>
+            </div>
+            <div class="modal-body">
+                <div class="span5">
+                    <form id="form_add" ng-submit="createUser()">
+                        <div class="control-group">
+                            <label class="control-label">用户名:</label>
+                            <div class="controls">
+                                <input type="text" class="span5" ng-model = "userInfo.UserName" placeholder="用户名" required>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">密码:</label>
+                            <div class="controls">
+                                <input type="password" class="span5" ng-model="userInfo.Password" placeholder="密码" required>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">姓名：</label>
+                            <div class="controls">
+                                <input type="text" class="span5" placeholder="姓名" ng-model = "userInfo.RealName" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" form="form_add">保存</button>
+                <button type="button" class="btn btn-default" ng-click="$hide()">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

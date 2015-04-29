@@ -1,0 +1,4 @@
+﻿.wrapper .subject{background:url(image/index-content-subject.png) center center no-repeat;}
+.wrapper .content{background:url(image/index-content-bg.png) center center no-repeat; height:492px;}
+.wrapper .action{height:88px;}
+.wrapper .action .button-link{height:88px; display:block; width:100%; background:#2461b1; font-family:微软雅黑;font-size:24px;color:#FFF; text-align:center; line-height:88px; text-decoration:none;}
