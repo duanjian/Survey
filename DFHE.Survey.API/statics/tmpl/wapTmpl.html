@@ -3,8 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>$Survey.SurveyInfo.SurveyName</title>
-    <link type="text/css" href="/CSS/base.css" rel="Stylesheet" />
-    <link type="text/css" href="/CSS/common.css" rel="Stylesheet" />
+    <link type="text/css" href="/statics/tmpl/$Survey.TemplateFolderName/base.css" rel="Stylesheet" />
+    <link type="text/css" href="/statics/tmpl/$Survey.TemplateFolderName/common.css" rel="Stylesheet" />
     <script type="text/javascript">
         if (/Android (\d+\.\d+)/.test(navigator.userAgent)) {
             var version = parseFloat(RegExp.$1);
@@ -56,7 +56,7 @@
                         jq.blockUI({
                             message: "<div class='alert'><div class='text'>只能选择" + reqOpts +"项！</div><div class='button-link' onclick='javascript:jQuery.unblockUI();'>关闭</div></div>", css: {
                                 left:
-                                        25, top: "20%", width: 591, height: 431, "background-color": "transparent"
+                                        "50%", top: "20%", width: 537, height: 399, "background-color": "transparent",border:0
                             }
                         });
                         temp = "";
@@ -66,7 +66,7 @@
                         jq.blockUI({
                             message: "<div class='alert'><div class='text'>请选择"+ reqOpts +"项后，<br />点击下一步！</div><div class='button-link'  onclick='javascript:jQuery.unblockUI();'>关闭</div></div>", css: {
                                 left:
-                                        25, top: "20%", width: 591, height: 431, "background-color": "transparent"
+                                        "50%", top: "20%", width: 537, height: 399, "background-color": "transparent",border:0
                             }
                         });
                         temp = "";
@@ -125,7 +125,7 @@
                     jq.blockUI({
                         message: "<div class='alert'><div class='text'>请选择答案！</div><div class='button-link'  onclick='javascript:jQuery.unblockUI();'>关闭</div></div>", css: {
                             left:
-                                    25, top: "20%", width: 591, height: 431, "background-color": "transparent"
+                                    "50%", top: "20%", width: 537, height: 399, "background-color": "transparent",border:0
                         }
                     });
                 }
@@ -188,224 +188,234 @@
                     _options = _options.substring(1, _options.length);
                 }
             }
+               
 
-            jq("#submit").click(function () {
-                var jqusername = jq("#username");
-                var jqmobilephone = jq("#mobilephone");
-                var jqage = jq("#age");
-                var jqtui = jq.trim(jq("#tuijian").val());
-                var jqloc = jq.trim(jq('#location').val());
-                var jqsug = jq.trim(jq('#suggestion').val());
-                var isval = true;
-                jq("#tip_u").text("");
-                jq("#tip_m").text("");
-                jq("#tip_a").text("");
+                    jq("#submit").click(function () {
 
-                 #foreach($requiredInfo in $Survey.RequiredInfo)                
-                 #if($requiredInfo == 1)
-
-                     if (jqusername.val() == "") {
-                         jq("#tip_u").text("请输入您的真实姓名");
-                         isval = false;
-                     }
-
-                #end                
-                #if($requiredInfo == 7)
-
-                    if (jqtui == "") {
-                        jq("#tip_t").text("请输入推荐人");
-                        isval = false;
-                    }
-
-                #end              
-                #if($requiredInfo == 2)
-
-                    if (jqmobilephone.val() == "") {
-                        jq("#tip_m").text("请输入您的电话号码");
-                        isval = false;
-                    }
-                    else if (!regTel.test(jqmobilephone.val())) {
-                        jq("#tip_m").text("电话号码格式错误");
-                        isval = false;
-                    }
-
-                #end          
-                #if($requiredInfo == 3)
-
-                    if (jq.trim(jqage.val()) == "") {
-                        jq("#tip_a").text("请输入您的年龄");
-                        isval = false;
-
-                    } else if (!regAge.test(jqage.val()) || jqage.val() < 1) {
-                        jq("#tip_a").text("年龄格式不正确");
-                        isval = false;
-                    }
-                #end
-
-                #if($requiredInfo == 8)
-                    if (jqloc == "") {
-                        jq("#tip_l").text("请输入您的所在地");
-                        isval = false;
-                    } 
-                #end
-
-                 #if($requiredInfo == 10)
-                     if (jqsug == "") {
-                        jq("#tip_su").text("请输入您的意见");
-                        isval = false;
-                    } 
-                #end
-
-                #end
-
-                if (isval) {
-                    var _posturl = "http://" + location.host + "/api/SurveyInfo/SubmitSurvey";
-                    
-                    var _postData = 'SurveyId=$Survey.SurveyInfo.SurveyId';
-                    #foreach($requiredInfo in $Survey.RequiredInfo)                
-                        #if($requiredInfo == 1)
-                        _postData += "&Username=" + encodeURIComponent(jqusername.val());
-                        #elseif($requiredInfo == 2)
-                        _postData += "&Mobile=" + encodeURIComponent(jqmobilephone.val());                           
-                        #elseif($requiredInfo == 3)
-                        _postData += "&Age=" + jqage.val();
-                        #elseif($requiredInfo == 4)
-                        _postData += "&Gender=" + jq("#sex").val();
-                        #elseif($requiredInfo == 5)
-                        _postData += "&Position=" + jq("#position").val();
-                        #elseif($requiredInfo == 6)
-                        _postData += "&Edu=" + jq("#edu").val();
-                        #elseif($requiredInfo == 7)
-                        _postData += "&Refer=" + encodeURIComponent(jqtui);
-                        #elseif($requiredInfo == 8)
-                        _postData += "&Location=" + encodeURIComponent(jqloc);                        
-                        #elseif($requiredInfo == 9)
-                        _postData += "&Marital=" + jq("#marital").val();
-                        #elseif($requiredInfo == 10)
-                        _postData += "&Suggestion=" + encodeURIComponent(jqsug);
+                         
+                        #if($isExample == 1)
+                            return;
                         #end
-                    #end              
 
-                    _postData += "&Options=" + encodeURIComponent(_options);
+                        var jqusername = jq("#username");
+                        var jqmobilephone = jq("#mobilephone");
+                        var jqage = jq("#age");
+                        var jqtui = jq.trim(jq("#tuijian").val());
+                        var jqloc = jq.trim(jq('#location').val());
+                        var jqsug = jq.trim(jq('#suggestion').val());
+                        var isval = true;
+                        jq("#tip_u").text("");
+                        jq("#tip_m").text("");
+                        jq("#tip_a").text("");
 
-                    jq.ajax({
-                        type: "POST",
-                        url: _posturl,
-                        data: _postData
-                    });
-                    jq(".survey .action").html("");
+                         #foreach($requiredInfo in $Survey.RequiredInfo)                
+                         #if($requiredInfo == 1)
 
-                    //jq(".wrapper .content").html(jq(".result").html());
-                    //加载第二页的内容
-                    //jq(".wrapper").addClass("done");
-                    jq.blockUI({
-                        message: "<div class='end'><div class='button-link'>我完成任务了！</div></div>", css: {
-                            left:
-                                    25, top: "20%", width: 591, height: 431, "background-color": "transparent"
+                             if (jqusername.val() == "") {
+                                 jq("#tip_u").text("请输入您的真实姓名");
+                                 isval = false;
+                             }
+
+                        #end                
+                        #if($requiredInfo == 7)
+
+                            if (jqtui == "") {
+                                jq("#tip_t").text("请输入推荐人");
+                                isval = false;
+                            }
+
+                        #end              
+                        #if($requiredInfo == 2)
+
+                            if (jqmobilephone.val() == "") {
+                                jq("#tip_m").text("请输入您的电话号码");
+                                isval = false;
+                            }
+                            else if (!regTel.test(jqmobilephone.val())) {
+                                jq("#tip_m").text("电话号码格式错误");
+                                isval = false;
+                            }
+
+                        #end          
+                        #if($requiredInfo == 3)
+
+                            if (jq.trim(jqage.val()) == "") {
+                                jq("#tip_a").text("请输入您的年龄");
+                                isval = false;
+
+                            } else if (!regAge.test(jqage.val()) || jqage.val() < 1) {
+                                jq("#tip_a").text("年龄格式不正确");
+                                isval = false;
+                            }
+                        #end
+
+                        #if($requiredInfo == 8)
+                            if (jqloc == "") {
+                                jq("#tip_l").text("请输入您的所在地");
+                                isval = false;
+                            } 
+                        #end
+
+                         #if($requiredInfo == 10)
+                             if (jqsug == "") {
+                                 jq("#tip_su").text("请输入您的意见");
+                                 isval = false;
+                             } 
+                        #end
+
+                        #end
+
+                        if (isval) {
+                            var _posturl = "http://" + location.host + "/api/SurveyInfo/SubmitSurvey";
+                    
+                            var _postData = 'SurveyId=$Survey.SurveyInfo.SurveyId';
+                            #foreach($requiredInfo in $Survey.RequiredInfo)                
+                                #if($requiredInfo == 1)
+                                    _postData += "&Username=" + encodeURIComponent(jqusername.val());
+                                #elseif($requiredInfo == 2)
+                            _postData += "&Mobile=" + encodeURIComponent(jqmobilephone.val());                           
+                                #elseif($requiredInfo == 3)
+                            _postData += "&Age=" + jqage.val();
+                                #elseif($requiredInfo == 4)
+                            _postData += "&Gender=" + jq("#sex").val();
+                                #elseif($requiredInfo == 5)
+                            _postData += "&Position=" + jq("#position").val();
+                                #elseif($requiredInfo == 6)
+                            _postData += "&Edu=" + jq("#edu").val();
+                                #elseif($requiredInfo == 7)
+                            _postData += "&Refer=" + encodeURIComponent(jqtui);
+                                #elseif($requiredInfo == 8)
+                            _postData += "&Location=" + encodeURIComponent(jqloc);                        
+                                #elseif($requiredInfo == 9)
+                            _postData += "&Marital=" + jq("#marital").val();
+                                #elseif($requiredInfo == 10)
+                            _postData += "&Suggestion=" + encodeURIComponent(jqsug);
+                                #end
+                            #end              
+
+                            _postData += "&Options=" + encodeURIComponent(_options);
+
+                            jq.ajax({
+                                type: "POST",
+                                url: _posturl,
+                                data: _postData
+                            });
+                            jq(".survey .action").html("");
+
+                            //jq(".wrapper .content").html(jq(".result").html());
+                            //加载第二页的内容
+                            //jq(".wrapper").addClass("done");
+                            jq.blockUI({
+                                message: "<div class='end'><div class='button-link'>我完成任务了！</div></div>", css: {
+                                    left:
+                                            "50%", top: "20%", width: 537, height: 360, "background-color": "transparent",border:0
+                                }
+                            });
                         }
                     });
-                }
-            });
 
-            jq("#username").blur(function () {
-                var jqusername = jq(this);
-                if (jqusername.val() == "") {
-                    jq("#tip_u").text("请输入您的真实姓名");
-                }
-                else {
-                    jq("#tip_u").text("");
-                }
-            });
+               
 
-            jq("#mobilephone").blur(function () {
-                var jqmobilephone = jq(this);
-                if (jqmobilephone.val() == "") {
-                    jq("#tip_m").text("请输入您的电话号码");
-                }
-                else {
-                    if (!regTel.test(jqmobilephone.val())) {
-                        jq("#tip_m").text("电话号码格式错误");
-                    }
-                    else {
-                        jq("#tip_m").text("");
-                    }
-                }
-            });
 
-            jq("#age").blur(function () {
-                var jqage = jq(this);
-                jq("#tip_a").text("");
-                if (jq.trim(jqage.val()) == "") {
-                    jq("#tip_a").text("请输入您的年龄");
-                } else if (!regAge.test(jqage.val())) {
-                    jq("#tip_a").text("年龄格式不正确");
-                }
-            });
+                    jq("#username").blur(function () {
+                        var jqusername = jq(this);
+                        if (jqusername.val() == "") {
+                            jq("#tip_u").text("请输入您的真实姓名");
+                        }
+                        else {
+                            jq("#tip_u").text("");
+                        }
+                    });
 
-            jq("#location").blur(function () {
-                var jqloc = jq(this);
-                jq("#tip_l").text("");
-                if (jq.trim(jqloc.val()) == "") {
-                    jq("#tip_l").text("请输入您的所在地");
-                } 
-            });
+                    jq("#mobilephone").blur(function () {
+                        var jqmobilephone = jq(this);
+                        if (jqmobilephone.val() == "") {
+                            jq("#tip_m").text("请输入您的电话号码");
+                        }
+                        else {
+                            if (!regTel.test(jqmobilephone.val())) {
+                                jq("#tip_m").text("电话号码格式错误");
+                            }
+                            else {
+                                jq("#tip_m").text("");
+                            }
+                        }
+                    });
 
-            jq("#suggestion").blur(function () {
-                var jqsu = jq(this);
-                jq("#tip_su").text("");
-                if (jq.trim(jqsu.val()) == "") {
-                    jq("#tip_su").text("请输入您的意见");
-                } 
-            });
+                    jq("#age").blur(function () {
+                        var jqage = jq(this);
+                        jq("#tip_a").text("");
+                        if (jq.trim(jqage.val()) == "") {
+                            jq("#tip_a").text("请输入您的年龄");
+                        } else if (!regAge.test(jqage.val())) {
+                            jq("#tip_a").text("年龄格式不正确");
+                        }
+                    });
+
+                    jq("#location").blur(function () {
+                        var jqloc = jq(this);
+                        jq("#tip_l").text("");
+                        if (jq.trim(jqloc.val()) == "") {
+                            jq("#tip_l").text("请输入您的所在地");
+                        } 
+                    });
+
+                    jq("#suggestion").blur(function () {
+                        var jqsu = jq(this);
+                        jq("#tip_su").text("");
+                        if (jq.trim(jqsu.val()) == "") {
+                            jq("#tip_su").text("请输入您的意见");
+                        } 
+                    });
           
 
-            jq("#tuijian").blur(function () {
-                var jqre = jq(this);
-                jq("#tip_t").text("");
-                if (jq.trim(jqre.val()) == "") {
-                    jq("#tip_t").text("请输入推荐人");
-                } 
-            });
+                    jq("#tuijian").blur(function () {
+                        var jqre = jq(this);
+                        jq("#tip_t").text("");
+                        if (jq.trim(jqre.val()) == "") {
+                            jq("#tip_t").text("请输入推荐人");
+                        } 
+                    });
 
 
-            jq(document).ready(function () {
-                jq.blockUI({
-                    message: "<div class='start'><div class='button-link'>帮我做个问卷吧！</div></div>", css: {
-                        left:
-                                25, top: "20%", width: 591, height: 431, "background-color": "transparent"
-                    }
-                });
-                jq(".wrapper").addClass("home");
-                //jq(".wrapper .action").append("<div class='button'><div class='button-link'>开始测试</div></div>");
-                jq(".button-link").click(function () {
-                    jq.unblockUI();
-                });
-                //加载第二页的内容
-                jq(".wrapper").addClass("survey");
-                /*加载第一个调查*/
-                if (jqquestionitems.length > 0) {
-                    jq(".survey .content").html(jqquestionitems[currentquestion]);
-                    jq(".survey .content input").change(function () {
-                        jq.each(jq(".survey .content input"), function (i, n) {
-                            jq(this).prev("span").removeClass("crclsel");
-                            if (jq(this).is(":checked")) {
-                                jq(this).prev("span").addClass("crclsel");
+                    jq(document).ready(function () {
+                        jq.blockUI({
+                            message: "<div class='start'><div class='button-link'>帮我答题吧</div></div>", css: {
+                                left:
+                                        "50%", top: "8%", width: 534, height: 650, "background-color": "transparent",border:0
                             }
                         });
-                        var jqthisselection = jq(this);
-                        if (jqthisselection.context.checked)
-                            jqthisselection.prev("span").addClass("crclsel");
-                        else
-                            jqthisselection.prev("span").removeClass("crclsel");
-                    });
-                    jq("div.question-item .next").bind("click", function (ev) {
-                        nextClick(ev);
-                    });
+                        jq(".wrapper").addClass("home");
+                        //jq(".wrapper .action").append("<div class='button'><div class='button-link'>开始测试</div></div>");
+                        jq(".button-link").click(function () {
+                            jq.unblockUI();
+                        });
+                        //加载第二页的内容
+                        jq(".wrapper").addClass("survey");
+                        /*加载第一个调查*/
+                        if (jqquestionitems.length > 0) {
+                            jq(".survey .content").html(jqquestionitems[currentquestion]);
+                            jq(".survey .content input").change(function () {
+                                jq.each(jq(".survey .content input"), function (i, n) {
+                                    jq(this).prev("span").removeClass("crclsel");
+                                    if (jq(this).is(":checked")) {
+                                        jq(this).prev("span").addClass("crclsel");
+                                    }
+                                });
+                                var jqthisselection = jq(this);
+                                if (jqthisselection.context.checked)
+                                    jqthisselection.prev("span").addClass("crclsel");
+                                else
+                                    jqthisselection.prev("span").removeClass("crclsel");
+                            });
+                            jq("div.question-item .next").bind("click", function (ev) {
+                                nextClick(ev);
+                            });
 
-                }
-                // });
-            });           
-        });
+                        }
+                        // });
+                    });           
+                });
     </script>
     <style type="text/css">
         
@@ -451,8 +461,8 @@
             </ul>
             #end
             
-            #set( $last = $question.QuesionId - 1)
-            #set( $next = $question.QuesionId )                       
+            #set( $last = $question.QuesionId )
+            #set( $next = $question.QuesionId + 1 )                       
             
             #if($question.RequiredOptionsCount == 1)
 
@@ -535,7 +545,7 @@
                     <td class="listitem-info">
                         <label class="text">
                             性别：</label>
-                        <select id="sex">                            
+                        <select id="sex">
                             <option value="1">男</option>
                             <option value="2">女</option>
                         </select>

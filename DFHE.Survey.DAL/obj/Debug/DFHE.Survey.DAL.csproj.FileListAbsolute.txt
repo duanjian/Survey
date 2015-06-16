@@ -64,3 +64,5 @@ C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.DAL\bin
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.DAL\obj\Debug\DFHE.Survey.DAL.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.DAL\obj\Debug\DFHE.Survey.DAL.dll
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.DAL\obj\Debug\DFHE.Survey.DAL.pdb
+C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.DAL\bin\Debug\Ionic.Zip.dll
+C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.DAL\bin\Debug\Ionic.Zip.xml

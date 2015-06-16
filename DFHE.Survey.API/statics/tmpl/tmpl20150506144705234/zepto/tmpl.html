@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,height=device-height"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name='apple-touch-fullscreen' content='yes'>
+	<meta name="full-screen" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="address=no">
+	<meta name="description" content="PFPS,支付">
+	<title>Document</title>
+</head>
+<body>
+	
+	<button type = "button" id = 'btnOK'>OK</button>
+
+	<div id = "div_step1" >
+		Step1
+	</div>
+
+
+	<script src = "js/zepto.js"></script>
+	<script src = "js/event.js"></script>	
+	<script src = "js/touch.js"></script>
+	<script src = "js/ajax.js"></script>
+	<script src = "js/callbacks.js"></script>
+	<script src = "js/deferred.js"></script>
+
+	<script>
+	(function(){		
+		var UA = window.navigator.userAgent;
+		var CLICK = 'click';
+		if(/ipad|iphone|android/.test(UA)){
+			CLICK = 'tap';
+		}
+		var divStep1 = $('#div_step1');
+		divStep1[0].style.display = 'none';
+		var btn = $('#btnOK');
+
+		var xhr = $.ajax({
+			  type: 'GET',
+			  url: 'http://api.openweathermap.org/data/2.5/weather',
+			  // data to be added to query string:
+			  //data: { name: 'Zepto.js' },
+			  // type of data we are expecting in return:
+			  dataType: 'json',
+			  //timeout: 300,
+			  //context: $('body'),
+			  // success: function(data){
+			  //   // Supposing this JSON payload was received:
+			  //   //   {"project": {"id": 42, "html": "<div>..." }}
+			  //   // append the HTML to context object.
+			  //   this.append(data.project.html)
+			  // },
+			  // error: function(xhr, type){
+			  //   alert('Ajax error!')
+			  //}
+			});
+		btn[CLICK](function(){
+			divStep1[0].style.display = 'block';
+
+			
+
+			xhr.done(function(data,status,xhr){
+				console.log(data);
+				console.log(status);
+				console.log(xhr);
+			});
+		});
+	})();
+	</script>
+</body>
+</html>
+
+
+

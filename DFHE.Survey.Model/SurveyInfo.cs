@@ -20,6 +20,7 @@ namespace DFHE.Survey.Model
         public int SurveyStatus { get; set; }
         public string StaticUrl { get; set; }
         public string RequiredInfos { get; set; }
+        public Nullable<int> TmplId { get; set; }
         public int CreateId { get; set; }
         public System.DateTime CreateTime { get; set; }
         public Nullable<System.DateTime> UpDateTime { get; set; }

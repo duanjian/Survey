@@ -24,3 +24,5 @@ C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility\obj\Release\DFHE.Survey.Utility.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility\obj\Release\DFHE.Survey.Utility.dll
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility\obj\Release\DFHE.Survey.Utility.pdb
+C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility\bin\Release\Ionic.Zip.dll
+C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility\bin\Release\Ionic.Zip.xml

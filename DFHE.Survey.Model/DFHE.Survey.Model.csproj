@@ -83,6 +83,9 @@
     <Compile Include="SurveyResult.cs">
       <DependentUpon>SurveyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TemplateInfo.cs">
+      <DependentUpon>SurveyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserInfo.cs">
       <DependentUpon>SurveyModel.tt</DependentUpon>
     </Compile>
@@ -90,6 +93,7 @@
     <Compile Include="ViewModel\ResultVO.cs" />
     <Compile Include="ViewModel\SurveyResultVO.cs" />
     <Compile Include="ViewModel\SurveyVO.cs" />
+    <Compile Include="ViewModel\TemplateVO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

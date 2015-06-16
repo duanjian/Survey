@@ -1,0 +1,78 @@
+﻿<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="javascript:void(0)" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i>首页</a> <a href="javascript:void(0)" class="current">模版列表</a> </div>
+        <!--<h1>问卷列表</h1>-->
+    </div>
+    <div class="container-fluid">
+        <!--<hr>-->
+        <div class="row-fluid">
+            <div class="span12">
+                 <button type="button" class="btn btn-success" upload-Tmpl>导入新模板</button>
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"><i class="icon-th"></i></span>
+                        <h5>模版列表</h5>
+                    </div>                    
+                    <div class="widget-content nopadding">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
+                            <div class=""></div>
+                            <table class="table table-bordered data-table dataTable" id="DataTables_Table_0">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 32px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                            <div class="DataTables_sort_wrapper">#<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div>
+                                        </th>
+                                        <th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 334px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                            <div class="DataTables_sort_wrapper">模版名称<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div>
+                                        </th>
+
+                                        <th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Browser: activate to sort column ascending">
+                                            <div class="DataTables_sort_wrapper">模版描述<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div>
+                                        </th>
+
+                                        <!-- <th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 120px;" aria-label="Platform(s): activate to sort column ascending">
+                                                 <div class="DataTables_sort_wrapper">问卷状态<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div>
+                                             </th>-->                                       
+                                                                                                                       
+                                        <th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;" aria-label="Platform(s): activate to sort column ascending">
+                                            <div class="DataTables_sort_wrapper">创建时间<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div>
+                                        </th>
+                                        <th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 300px;" aria-label="Platform(s): activate to sort column ascending">
+                                            <div class="DataTables_sort_wrapper">操作<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                    <tr class="gradeA odd" ng-repeat="tmpl in ret">
+                                        <td class=" sorting_1">{{$index + 1}}</td>
+                                        <td class=" sorting_2"><a href="javascript:void(0)">{{ tmpl.TmplTitle }}</a> </td>
+                                        <td class="">{{tmpl.TmplDescription}}</td>
+                                        <!--<td class="">1.1</td>-->                                                                                                                  
+                                        <td class="center">
+                                            <a href="javascript:void(0)">{{tmpl.CreateTime | date:'yyyy-MM-dd'}}</a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="javascript:void(0)" target="blank" class="btn btn-inverse" ng-click ="previewTmpl(tmpl.StoredName)">预览</a>
+                                            </div>          
+                                            <div class="btn-group">
+                                                <a href="/api/Template/DownloadTemplate/{{tmpl.TmplId}}" target="blank" class="btn btn-inverse">下载</a>
+                                            </div>                                        
+                                            <div class="btn-group">
+                                                <button class="btn btn-inverse" ng-click="deleteSurveyById(survey.SurveyId,$index)" dfhe-deleteconfirm controller="Template" action="DeleteTemplateById" id="{{tmpl.TmplId}}">删除</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
+                                <div class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers" id="DataTables_Table_0_paginate"><a tabindex="0" class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default ui-state-disabled" id="DataTables_Table_0_first">首页</a><a tabindex="0" class="previous fg-button ui-button ui-state-default ui-state-disabled" id="DataTables_Table_0_previous">上一页</a><span><a tabindex="0" class="fg-button ui-button ui-state-default ui-state-disabled">1</a><a tabindex="0" class="fg-button ui-button ui-state-default">2</a><a tabindex="0" class="fg-button ui-button ui-state-default">3</a><a tabindex="0" class="fg-button ui-button ui-state-default">4</a><a tabindex="0" class="fg-button ui-button ui-state-default">5</a></span><a tabindex="0" class="next fg-button ui-button ui-state-default" id="DataTables_Table_0_next">下一页</a><a tabindex="0" class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default" id="DataTables_Table_0_last">尾页</a></div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

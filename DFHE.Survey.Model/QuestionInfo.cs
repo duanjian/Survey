@@ -19,8 +19,8 @@ namespace DFHE.Survey.Model
         public string QuestionTitle { get; set; }
         public int QuestionOptionsCount { get; set; }
         public int RequiredOptionsCount { get; set; }
+        public Nullable<bool> IsOrientation { get; set; }
         public bool Deleted { get; set; }
         public string Remark { get; set; }
-        public Nullable<bool> IsOrientation { get; set; }
     }
 }

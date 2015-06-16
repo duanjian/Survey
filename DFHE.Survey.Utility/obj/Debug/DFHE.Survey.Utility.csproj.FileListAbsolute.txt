@@ -29,3 +29,5 @@ C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility\bin\Debug\zxing.presentation.xml
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility\obj\Debug\DFHE.Survey.Utility.dll
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility\obj\Debug\DFHE.Survey.Utility.pdb
+C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility\bin\Debug\Ionic.Zip.dll
+C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.Utility\bin\Debug\Ionic.Zip.xml

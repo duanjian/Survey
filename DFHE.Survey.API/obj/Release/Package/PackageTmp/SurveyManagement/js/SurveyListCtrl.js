@@ -1,4 +1,4 @@
-﻿var SurveyApp = angular.module('dfhe.app', ['dfhe.common']);
+﻿var SurveyApp = angular.module('dfhe.app', ['dfhe.common', 'angularFileUpload']);
 (function (ng, app) {
     function SurveyListCtrl($scope, $rootScope, apiService, loginInfo, AuthenticationService) {
         this.scope = $scope;

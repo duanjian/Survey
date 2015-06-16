@@ -23,6 +23,7 @@ namespace DFHE.Survey.BLL
         private IUserInfoRepository _userInfoRepository;
         private IRespondentInfoRepository _respondentInfoRepository;
         private ISurveyResultRepository _surveyResultRepository;
+        private ITemplateRepository _templateRepository;
         private IUnitOfWork _unitOfWork;
 
         public SurveyInfoService(
@@ -32,6 +33,7 @@ namespace DFHE.Survey.BLL
             IOptionInfoRepository optionInfoRepository,
             IRespondentInfoRepository respondentInfoRepository,
             ISurveyResultRepository surveyResultRepository,
+            ITemplateRepository templateRepository,
             IUnitOfWork unitOfWork)
         {
             _surveyInfoRepository = surveyInfoRepository;
@@ -40,6 +42,7 @@ namespace DFHE.Survey.BLL
             _optionInfoRepository = optionInfoRepository;
             _respondentInfoRepository = respondentInfoRepository;
             _surveyResultRepository = surveyResultRepository;
+            _templateRepository = templateRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -53,22 +56,24 @@ namespace DFHE.Survey.BLL
 
             try
             {
-                var surveyList = _surveyInfoRepository.LoadEntities(s => s.Deleted == false).Select(s => new { s.SurveyId, s.SurveyName, s.QuestionCount, s.StaticUrl, s.CreateId, s.CreateTime }).ToList();
+                var surveyList = _surveyInfoRepository.LoadEntities(s => s.Deleted == false).Select(s => new { s.SurveyId, s.SurveyName, s.TmplId, s.QuestionCount, s.StaticUrl, s.CreateId, s.CreateTime }).ToList();
 
                 var retList = new List<SurveyInfoDTO>();
 
                 surveyList.ForEach(s =>
                 {
                     var tmpUser = _userInfoRepository.LoadEntities(u => u.UserId == s.CreateId).FirstOrDefault();
+                    var tmpTmpl = _templateRepository.LoadEntities(t => t.TmplId == s.TmplId).FirstOrDefault();
                     retList.Add(new SurveyInfoDTO()
                     {
                         SurveyId = s.SurveyId,
                         SurveyName = s.SurveyName,
+                        TemplateName = tmpTmpl == null ? "" : tmpTmpl.TmplTitle,
                         QuestionCount = s.QuestionCount,
                         StaticUrl = s.StaticUrl,
                         CreateId = s.CreateId,
                         CreateTime = s.CreateTime,
-                        CreateName = tmpUser != null ? tmpUser.RealName:"--"
+                        CreateName = tmpUser != null ? tmpUser.RealName : "--"
                     });
                 });
 
@@ -104,7 +109,7 @@ namespace DFHE.Survey.BLL
                             .FirstOrDefault();
                     _unitOfWork.Commit();
 
-
+                    surveyInfo.TmplId = survey.TemplateId;
                     //初始化数据
                     surveyInfo.CreateTime = base.CurrentServerTime;
                     surveyInfo.Deleted = false;
@@ -156,9 +161,16 @@ namespace DFHE.Survey.BLL
                         Options = _optionInfoRepository.LoadEntities(o => o.QuesionId == q.QuestionId).ToList()
                     }));
 
-                    var surveyTmplObj = new { QuestionInfo = quesionList, SurveyInfo = insertedSurveyInfo, RequiredInfo = survey.RequiredInfo };
+                    var tmplInfo =
+                        _templateRepository.LoadEntities(t => t.TmplId == insertedSurveyInfo.TmplId).FirstOrDefault();
 
-                    GenerateHtml(surveyTmplObj, "wapTmpl.html", survey.SurveyInfo.StaticUrl.Split("/".ToCharArray())[1].Split('.')[0]);
+                    var arr = tmplInfo.StoredName.Split('\\');
+                    var tmplFolder = arr[arr.Length - 1];
+
+
+                    var surveyTmplObj = new { QuestionInfo = quesionList, SurveyInfo = insertedSurveyInfo, RequiredInfo = survey.RequiredInfo, TemplateFolderName = tmplFolder, isExample = 0 };
+
+                    StaticPageHelper.GenerateHtml(surveyTmplObj, "wapTmpl.html", survey.SurveyInfo.StaticUrl.Split("/".ToCharArray())[1].Split('.')[0]);
 
                     trans.Complete();
                     result.Result = 1;
@@ -225,6 +237,7 @@ namespace DFHE.Survey.BLL
             {
                 using (TransactionScope tran = new TransactionScope())
                 {
+                    survey.SurveyInfo.TmplId = survey.TemplateId;
                     _surveyInfoRepository.Update(survey.SurveyInfo);
                     _unitOfWork.Commit();
 
@@ -276,9 +289,15 @@ namespace DFHE.Survey.BLL
                         Options = _optionInfoRepository.LoadEntities(o => o.QuesionId == q.QuestionId).ToList()
                     }));
 
-                    var surveyTmplObj = new { QuestionInfo = quesionList, SurveyInfo = surveyInfo, RequiredInfo = survey.SurveyInfo.RequiredInfos.Split(',') };
+                    var tmplInfo =
+                     _templateRepository.LoadEntities(t => t.TmplId == survey.SurveyInfo.TmplId).FirstOrDefault();
 
-                    GenerateHtml(surveyTmplObj, "wapTmpl.html", survey.SurveyInfo.StaticUrl.Split("/".ToCharArray())[1].Split('.')[0]);
+                    var arr = tmplInfo.StoredName.Split('\\');
+                    var tmplFolder = arr[arr.Length - 1];
+                    
+                    var surveyTmplObj = new { QuestionInfo = quesionList, SurveyInfo = surveyInfo, RequiredInfo = survey.SurveyInfo.RequiredInfos.Split(','), TemplateFolderName = tmplFolder, isExample = 0 };
+
+                    StaticPageHelper.GenerateHtml(surveyTmplObj, "wapTmpl.html", survey.SurveyInfo.StaticUrl.Split("/".ToCharArray())[1].Split('.')[0]);
 
 
 
@@ -439,7 +458,7 @@ namespace DFHE.Survey.BLL
             return result;
         }
 
-        
+
 
 
         #region 需填信息数字转字符串
@@ -528,31 +547,31 @@ namespace DFHE.Survey.BLL
 
         #region 静态页生成相关
 
-        private void GenerateHtml(Object survey, string tmplName, string staticPageName)
-        {
+        //private void GenerateHtml(Object survey, string tmplName, string staticPageName)
+        //{
 
-            try
-            {
-                VelocityHelper helper = new VelocityHelper("/statics/tmpl/");
-                NVTools tools = new NVTools();
-                helper.Put("tools", tools);
-                helper.Put("Survey", survey);
-                helper.GenerateHtml(tmplName, string.Format("/statics/{0}.html", staticPageName));
+        //    try
+        //    {
+        //        VelocityHelper helper = new VelocityHelper("/statics/tmpl/");
+        //        NVTools tools = new NVTools();
+        //        helper.Put("tools", tools);
+        //        helper.Put("Survey", survey);
+        //        helper.GenerateHtml(tmplName, string.Format("/statics/{0}.html", staticPageName));
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        private class NVTools
-        {
-            public string OptNumToChar(string source)
-            {
-                return Convert.ToChar(Convert.ToInt32(source) + 64).ToString();
-            }
-        }
+        //private class NVTools
+        //{
+        //    public string OptNumToChar(string source)
+        //    {
+        //        return Convert.ToChar(Convert.ToInt32(source) + 64).ToString();
+        //    }
+        //}
 
         #endregion
     }

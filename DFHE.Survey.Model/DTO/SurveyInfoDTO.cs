@@ -10,6 +10,7 @@ namespace DFHE.Survey.Model
     {
         public int SurveyId { get; set; }
         public string SurveyName { get; set; }
+        public string TemplateName { get; set; }
         public int QuestionCount { get; set; }
         public string StaticUrl { get; set; }
         public int CreateId { get; set; }

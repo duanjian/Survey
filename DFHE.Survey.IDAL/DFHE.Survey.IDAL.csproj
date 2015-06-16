@@ -61,6 +61,7 @@
     <Compile Include="ISurveyResultRepository.cs">
       <DependentUpon>IDAL.tt</DependentUpon>
     </Compile>
+    <Compile Include="ITemplateRepository.cs" />
     <Compile Include="IUserInfoRepository.cs">
       <DependentUpon>IDAL.tt</DependentUpon>
     </Compile>

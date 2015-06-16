@@ -4,14 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DFHE.SurveyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DFHE.Survey.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="DFHESurveyModelStoreContainer">
-          <EntitySet Name="OptionInfo" EntityType="DFHE.SurveyModel.Store.OptionInfo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="QuestionInfo" EntityType="DFHE.SurveyModel.Store.QuestionInfo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RespondentInfo" EntityType="DFHE.SurveyModel.Store.RespondentInfo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SurveyInfo" EntityType="DFHE.SurveyModel.Store.SurveyInfo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SurveyResult" EntityType="DFHE.SurveyModel.Store.SurveyResult" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UserInfo" EntityType="DFHE.SurveyModel.Store.UserInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OptionInfo" EntityType="DFHE.Survey.Model.Store.OptionInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuestionInfo" EntityType="DFHE.Survey.Model.Store.QuestionInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RespondentInfo" EntityType="DFHE.Survey.Model.Store.RespondentInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SurveyInfo" EntityType="DFHE.Survey.Model.Store.SurveyInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SurveyResult" EntityType="DFHE.Survey.Model.Store.SurveyResult" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplateInfo" EntityType="DFHE.Survey.Model.Store.TemplateInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserInfo" EntityType="DFHE.Survey.Model.Store.UserInfo" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="OptionInfo">
           <Key>
@@ -66,6 +67,7 @@
           <Property Name="SurveyStatus" Type="int" Nullable="false" />
           <Property Name="StaticUrl" Type="nvarchar" Nullable="false" MaxLength="512" />
           <Property Name="RequiredInfos" Type="nvarchar" MaxLength="32" />
+          <Property Name="TmplId" Type="int" />
           <Property Name="CreateId" Type="int" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
           <Property Name="UpDateTime" Type="datetime" />
@@ -83,6 +85,20 @@
           <Property Name="SelectedOptions" Type="nvarchar" Nullable="false" MaxLength="64" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="TemplateInfo">
+          <Key>
+            <PropertyRef Name="TmplId" />
+          </Key>
+          <Property Name="TmplId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TmplTitle" Type="nvarchar" MaxLength="64" />
+          <Property Name="TmplDescription" Type="nvarchar" MaxLength="512" />
+          <Property Name="PreviewUrl" Type="nvarchar" MaxLength="512" />
+          <Property Name="StoredName" Type="nvarchar" MaxLength="256" />
+          <Property Name="CreateId" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="256" />
+        </EntityType>
         <EntityType Name="UserInfo">
           <Key>
             <PropertyRef Name="UserId" />
@@ -95,17 +111,19 @@
           <Property Name="Deleted" Type="bit" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="256" />
         </EntityType>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DFHE.SurveyModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DFHE.Survey.Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="OptionInfoes" EntityType="DFHE.SurveyModel.OptionInfo" />
-          <EntitySet Name="QuestionInfoes" EntityType="DFHE.SurveyModel.QuestionInfo" />
-          <EntitySet Name="RespondentInfoes" EntityType="DFHE.SurveyModel.RespondentInfo" />
-          <EntitySet Name="SurveyInfoes" EntityType="DFHE.SurveyModel.SurveyInfo" />
-          <EntitySet Name="SurveyResults" EntityType="DFHE.SurveyModel.SurveyResult" />
-          <EntitySet Name="UserInfoes" EntityType="DFHE.SurveyModel.UserInfo" />
+          <EntitySet Name="OptionInfo" EntityType="DFHE.Survey.Model.OptionInfo" />
+          <EntitySet Name="QuestionInfo" EntityType="DFHE.Survey.Model.QuestionInfo" />
+          <EntitySet Name="RespondentInfo" EntityType="DFHE.Survey.Model.RespondentInfo" />
+          <EntitySet Name="SurveyInfo" EntityType="DFHE.Survey.Model.SurveyInfo" />
+          <EntitySet Name="SurveyResult" EntityType="DFHE.Survey.Model.SurveyResult" />
+          <EntitySet Name="TemplateInfo" EntityType="DFHE.Survey.Model.TemplateInfo" />
+          <EntitySet Name="UserInfo" EntityType="DFHE.Survey.Model.UserInfo" />
         </EntityContainer>
         <EntityType Name="OptionInfo">
           <Key>
@@ -127,9 +145,9 @@
           <Property Name="QuestionTitle" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
           <Property Name="QuestionOptionsCount" Type="Int32" Nullable="false" />
           <Property Name="RequiredOptionsCount" Type="Int32" Nullable="false" />
+          <Property Name="IsOrientation" Type="Boolean" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <Property Name="Remark" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Type="Boolean" Name="IsOrientation" />
         </EntityType>
         <EntityType Name="RespondentInfo">
           <Key>
@@ -160,6 +178,7 @@
           <Property Name="SurveyStatus" Type="Int32" Nullable="false" />
           <Property Name="StaticUrl" Type="String" Nullable="false" MaxLength="512" Unicode="true" FixedLength="false" />
           <Property Name="RequiredInfos" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="TmplId" Type="Int32" />
           <Property Name="CreateId" Type="Int32" Nullable="false" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpDateTime" Type="DateTime" Precision="3" />
@@ -176,6 +195,20 @@
           <Property Name="QuestionId" Type="Int32" Nullable="false" />
           <Property Name="SelectedOptions" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TemplateInfo">
+          <Key>
+            <PropertyRef Name="TmplId" />
+          </Key>
+          <Property Name="TmplId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TmplTitle" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="TmplDescription" Type="String" MaxLength="512" Unicode="true" FixedLength="false" />
+          <Property Name="PreviewUrl" Type="String" MaxLength="512" Unicode="true" FixedLength="false" />
+          <Property Name="StoredName" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="CreateId" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="Remark" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -195,8 +228,8 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DFHESurveyModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="OptionInfoes">
-            <EntityTypeMapping TypeName="DFHE.SurveyModel.OptionInfo">
+          <EntitySetMapping Name="OptionInfo">
+            <EntityTypeMapping TypeName="DFHE.Survey.Model.OptionInfo">
               <MappingFragment StoreEntitySet="OptionInfo">
                 <ScalarProperty Name="OptionId" ColumnName="OptionId" />
                 <ScalarProperty Name="QuesionId" ColumnName="QuesionId" />
@@ -207,22 +240,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="QuestionInfoes">
-            <EntityTypeMapping TypeName="DFHE.SurveyModel.QuestionInfo">
+          <EntitySetMapping Name="QuestionInfo">
+            <EntityTypeMapping TypeName="DFHE.Survey.Model.QuestionInfo">
               <MappingFragment StoreEntitySet="QuestionInfo">
-                <ScalarProperty Name="IsOrientation" ColumnName="IsOrientation" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
                 <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
                 <ScalarProperty Name="QuestionTitle" ColumnName="QuestionTitle" />
                 <ScalarProperty Name="QuestionOptionsCount" ColumnName="QuestionOptionsCount" />
                 <ScalarProperty Name="RequiredOptionsCount" ColumnName="RequiredOptionsCount" />
+                <ScalarProperty Name="IsOrientation" ColumnName="IsOrientation" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RespondentInfoes">
-            <EntityTypeMapping TypeName="DFHE.SurveyModel.RespondentInfo">
+          <EntitySetMapping Name="RespondentInfo">
+            <EntityTypeMapping TypeName="DFHE.Survey.Model.RespondentInfo">
               <MappingFragment StoreEntitySet="RespondentInfo">
                 <ScalarProperty Name="RespondentId" ColumnName="RespondentId" />
                 <ScalarProperty Name="RespondentName" ColumnName="RespondentName" />
@@ -241,8 +274,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SurveyInfoes">
-            <EntityTypeMapping TypeName="DFHE.SurveyModel.SurveyInfo">
+          <EntitySetMapping Name="SurveyInfo">
+            <EntityTypeMapping TypeName="DFHE.Survey.Model.SurveyInfo">
               <MappingFragment StoreEntitySet="SurveyInfo">
                 <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
                 <ScalarProperty Name="SurveyName" ColumnName="SurveyName" />
@@ -250,6 +283,7 @@
                 <ScalarProperty Name="SurveyStatus" ColumnName="SurveyStatus" />
                 <ScalarProperty Name="StaticUrl" ColumnName="StaticUrl" />
                 <ScalarProperty Name="RequiredInfos" ColumnName="RequiredInfos" />
+                <ScalarProperty Name="TmplId" ColumnName="TmplId" />
                 <ScalarProperty Name="CreateId" ColumnName="CreateId" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="UpDateTime" ColumnName="UpDateTime" />
@@ -258,8 +292,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SurveyResults">
-            <EntityTypeMapping TypeName="DFHE.SurveyModel.SurveyResult">
+          <EntitySetMapping Name="SurveyResult">
+            <EntityTypeMapping TypeName="DFHE.Survey.Model.SurveyResult">
               <MappingFragment StoreEntitySet="SurveyResult">
                 <ScalarProperty Name="SurveyResultId" ColumnName="SurveyResultId" />
                 <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
@@ -270,8 +304,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserInfoes">
-            <EntityTypeMapping TypeName="DFHE.SurveyModel.UserInfo">
+          <EntitySetMapping Name="TemplateInfo">
+            <EntityTypeMapping TypeName="DFHE.Survey.Model.TemplateInfo">
+              <MappingFragment StoreEntitySet="TemplateInfo">
+                <ScalarProperty Name="TmplId" ColumnName="TmplId" />
+                <ScalarProperty Name="TmplTitle" ColumnName="TmplTitle" />
+                <ScalarProperty Name="TmplDescription" ColumnName="TmplDescription" />
+                <ScalarProperty Name="PreviewUrl" ColumnName="PreviewUrl" />
+                <ScalarProperty Name="StoredName" ColumnName="StoredName" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfo">
+            <EntityTypeMapping TypeName="DFHE.Survey.Model.UserInfo">
               <MappingFragment StoreEntitySet="UserInfo">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />

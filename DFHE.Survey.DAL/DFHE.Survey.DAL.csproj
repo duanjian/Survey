@@ -69,6 +69,7 @@
     <Compile Include="SurveyResultRepository.cs">
       <DependentUpon>DAL.tt</DependentUpon>
     </Compile>
+    <Compile Include="TemplateRepository.cs" />
     <Compile Include="UserInfoRepository.cs">
       <DependentUpon>DAL.tt</DependentUpon>
     </Compile>

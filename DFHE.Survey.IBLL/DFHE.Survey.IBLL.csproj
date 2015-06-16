@@ -59,6 +59,7 @@
     <Compile Include="ISurveyResultService.cs">
       <DependentUpon>IBLL.tt</DependentUpon>
     </Compile>
+    <Compile Include="ITemplateService.cs" />
     <Compile Include="IUserInfoService.cs">
       <DependentUpon>IBLL.tt</DependentUpon>
     </Compile>

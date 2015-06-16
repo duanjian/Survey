@@ -1,11 +1,13 @@
-﻿angular.module("dfhe.common", ["ngResource", 'ngRoute', "ngCookies", 'ngSanitize', 'mgcrea.ngStrap'])
-     .run(['$templateCache', function ($templateCache) {
-         'use strict';
-         $templateCache.put('modal/dfhe.modal.confirm.html',
-             "<div class=\"modal\" tabindex=\"-1\" role=\"dialog\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\" ng-show=\"title\"><button type=\"button\" class=\"close\" ng-click=\"$hide()\">&times;</button><h4 class=\"modal-title\" ng-bind=\"title\"></h4></div><div class=\"modal-body\" ng-bind=\"content\"></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" ng-click=\"$hide()\">取消</button><button type=\"button\" class=\"btn btn-primary\" ng-click=\"deleteByPrimaryID();$hide()\">确认</button></div></div></div></div>"
-         );
-     }])
-    .factory("dictData", function () {
+﻿angular.module("dfhe.common", ['ngResource', 'ngRoute', "ngCookies", 'ngSanitize', 'mgcrea.ngStrap'])
+    .run([
+        '$templateCache', function($templateCache) {
+            'use strict';
+            $templateCache.put('modal/dfhe.modal.confirm.html',
+                "<div class=\"modal\" tabindex=\"-1\" role=\"dialog\"><div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\" ng-show=\"title\"><button type=\"button\" class=\"close\" ng-click=\"$hide()\">&times;</button><h4 class=\"modal-title\" ng-bind=\"title\"></h4></div><div class=\"modal-body\" ng-bind=\"content\"></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-default\" ng-click=\"$hide()\">取消</button><button type=\"button\" class=\"btn btn-primary\" ng-click=\"deleteByPrimaryID();$hide()\">确认</button></div></div></div></div>"
+            );
+        }
+    ])
+    .factory("dictData", function() {
         var requireInfo = [
             { key: 1, value: '姓名' },
             { key: 2, value: '手机号码' },
@@ -22,24 +24,24 @@
             requireInfo: requireInfo
         };
     })
-    .factory('loadingModal', function ($modal) {
+    .factory('loadingModal', function($modal) {
         var modal = $modal({
-            keyboard: false,                //backdrop 为 static 时，点击模态对话框的外部区域不会将其关闭
-            backdrop: 'static',             //keyboard 为 false 时，按下 Esc 键不会关闭 Modal
+            keyboard: false, //backdrop 为 static 时，点击模态对话框的外部区域不会将其关闭
+            backdrop: 'static', //keyboard 为 false 时，按下 Esc 键不会关闭 Modal
             animation: "am-fade-and-scale",
             template: "/templates/_loadingModal.html",
             show: false
         });
         return {
-            show: function () {
+            show: function() {
                 return modal.show();
             },
-            hide: function () {
+            hide: function() {
                 return modal.hide();
             }
         }
     })
-    .factory("apiService", function ($resource, $cookieStore) {
+    .factory("apiService", function($resource, $cookieStore) {
         return $resource("api/:controller/:action/:id", { controller: "@controller", action: "@action", id: "@id" },
         {
             get: {
@@ -60,7 +62,7 @@
             }
         });
     })
-    .factory("loginInfo", function ($cookieStore, $location, $window) {
+    .factory("loginInfo", function($cookieStore, $location, $window) {
         var loginInfo = $cookieStore.get("survey_user");
         if (!loginInfo) {
             // 没有登录信息，跳转到登录界面
@@ -69,16 +71,16 @@
         var result = window.Base64.decoder(loginInfo);
         return JSON.parse(result);
     })
-    .factory('apiService2', function ($http, $cookieStore) {
+    .factory('apiService2', function($http, $cookieStore) {
         return {
-            request: function (method, url, data, okCallback, koCallback) {
+            request: function(method, url, data, okCallback, koCallback) {
                 $http({
                     method: method,
                     url: url,
                     data: data
                 }).success(okCallback).error(koCallback);
             },
-            authRequest: function (method, url, data, okCallback, koCallback) {
+            authRequest: function(method, url, data, okCallback, koCallback) {
                 $http({
                     method: method,
                     url: url,
@@ -88,64 +90,64 @@
             }
         }
     })
-    .factory("SessionService", function () {
+    .factory("SessionService", function() {
         return {
-            get: function (key) {
+            get: function(key) {
                 return sessionStorage.getItem(key);
             },
-            set: function (key, val) {
+            set: function(key, val) {
                 return sessionStorage.setItem(key, val);
             },
-            remove: function (key) {
+            remove: function(key) {
                 return sessionStorage.removeItem(key);
             }
         }
     })
-    .factory("AuthenticationService", function ($http, $location, $window, $cookieStore, apiService2, SessionService, alert) {
-        var cacheSession = function () {
-            $cookieStore.put("authenicated", true);
-        };
-        var uncacheSession = function () {
-            $cookieStore.remove("authenicated");
-        };
-        return {
-            login: function (credentials) {
-                credentials.Password = window.Base64.encoder(window.Base64.encoder(credentials.Password));
-                apiService2.request('post', 'api/Login/Login', JSON.stringify(credentials), function (res) {
-                    if (res.Result == 1) {
-                        cacheSession();
-                        $cookieStore.put("Authorization", res.Data.tt);
-                        // 存储当前登录用户信息
-                        var empInfo = window.Base64.encoder(JSON.stringify(res.Data.UserInfo));
-                        $cookieStore.put("survey_user", empInfo);
-                        $window.location.href = '/index.html';
-                    } else {
-                        alert.error('用户名或密码错误,请重试');
-                    }
-                });
-            },
-            logout: function () {
+    .factory("AuthenticationService", function($http, $location, $window, $cookieStore, apiService2, SessionService, alert) {
+            var cacheSession = function() {
+                $cookieStore.put("authenicated", true);
+            };
+            var uncacheSession = function() {
                 $cookieStore.remove("authenicated");
-                $cookieStore.remove("Authorization");
-                $cookieStore.remove("survey_user");
+            };
+            return {
+                login: function(credentials) {
+                    credentials.Password = window.Base64.encoder(window.Base64.encoder(credentials.Password));
+                    apiService2.request('post', 'api/Login/Login', JSON.stringify(credentials), function(res) {
+                        if (res.Result == 1) {
+                            cacheSession();
+                            $cookieStore.put("Authorization", res.Data.tt);
+                            // 存储当前登录用户信息
+                            var empInfo = window.Base64.encoder(JSON.stringify(res.Data.UserInfo));
+                            $cookieStore.put("survey_user", empInfo);
+                            $window.location.href = '/index.html';
+                        } else {
+                            alert.error('用户名或密码错误,请重试');
+                        }
+                    });
+                },
+                logout: function() {
+                    $cookieStore.remove("authenicated");
+                    $cookieStore.remove("Authorization");
+                    $cookieStore.remove("survey_user");
 
-                $http({
-                    method: "get",
-                    url: "api/Login/Logout"
-                }, function (res) {
-                    if (res.result == 1) {
-                        $cookieStore.put("survey_user", '');
-                    }
-                });
-                $window.location.href = "/login.html";
-            },
-            isLoggedIn: function () {
-                return SessionService.get('authenicated');
-            }
-        };
-    }
+                    $http({
+                        method: "get",
+                        url: "api/Login/Logout"
+                    }, function(res) {
+                        if (res.result == 1) {
+                            $cookieStore.put("survey_user", '');
+                        }
+                    });
+                    $window.location.href = "/login.html";
+                },
+                isLoggedIn: function() {
+                    return SessionService.get('authenicated');
+                }
+            };
+        }
     ).config([
-        '$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+        '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
             $routeProvider
                 .when('/index', {
                     templateUrl: 'SurveyManagement/SurveyList.html',
@@ -172,6 +174,10 @@
                     templateUrl: 'SurveyResultManagement/ResultStatistics.html',
                     controller: 'ResultStatisticsCtrl'
                 })
+                .when('/tmpl', {
+                    templateUrl: 'TemplateManagement/TemplateList.html',
+                    controller: 'TemplateListCtrl'
+                })
                 .otherwise({
                     redirectTo: '/createsurvey'
                     //redirectTo: '/index'
@@ -180,23 +186,23 @@
             //$locationProvider.
         }
     ])
-    .factory('alert', function ($alert) {
+    .factory('alert', function($alert) {
         //$alert({ title: '操作成功', content: '新项目已建立', placement: 'top', type: 'danger', duration:3, keyboard: true, show: false });
         //提醒时间
         var duration = 3;
         var placement = 'top'; // top-right       
         return {
-            success: function (content) {
+            success: function(content) {
                 return $alert({ title: '操作成功', content: content, placement: placement, type: 'success', duration: duration, keyboard: true, show: true });
             },
-            error: function (content) {
+            error: function(content) {
                 return $alert({ title: '操作失败', content: content, placement: placement, type: 'danger', duration: duration, keyboard: true, show: true });
             }
         }
     })
-    .factory('exportTbl2csv', function () {
+    .factory('exportTbl2csv', function() {
         return {
-            save: function (tableId, ReportTitle) {
+            save: function(tableId, ReportTitle) {
                 var data = $('#' + tableId).tableToJSON();
                 if (data == '')
                     return;
@@ -287,12 +293,12 @@
             }
         }
     })
-    .filter('OptNumToChar', function () {
-        return function (n) {
+    .filter('OptNumToChar', function() {
+        return function(n) {
             return String.fromCharCode(64 + parseInt(n));
         }
     })
-    .filter('RequireInfoFilter', function () {
+    .filter('RequireInfoFilter', function() {
 
         //{ key: 1, value: '姓名' },
         //{ key: 2, value: '手机号码' },
@@ -305,38 +311,39 @@
         //{ key: 9, value: '婚姻状态' },
         //{ key: 10, value: '意见' }
 
-        return function (n) {
+        return function(n) {
             var ret = '';
             switch (n) {
-                case '1':
-                    ret = '姓名'; break;
-                case '2':
-                    ret = '手机号码';
-                    break;
-                case '3':
-                    ret = '年龄';
-                    break;
-                case '4':
-                    ret = '性别';
-                    break;
-                case '5':
-                    ret = '职业';
-                    break;
-                case '6':
-                    ret = '教育程度';
-                    break;
-                case '7':
-                    ret = '推荐人';
-                    break;
-                case '8':
-                    ret = '所在地';
-                    break;
-                case '9':
-                    ret = '婚姻状态';
-                    break;
-                case '10':
-                    ret = '意见';
-                    break;
+            case '1':
+                ret = '姓名';
+                break;
+            case '2':
+                ret = '手机号码';
+                break;
+            case '3':
+                ret = '年龄';
+                break;
+            case '4':
+                ret = '性别';
+                break;
+            case '5':
+                ret = '职业';
+                break;
+            case '6':
+                ret = '教育程度';
+                break;
+            case '7':
+                ret = '推荐人';
+                break;
+            case '8':
+                ret = '所在地';
+                break;
+            case '9':
+                ret = '婚姻状态';
+                break;
+            case '10':
+                ret = '意见';
+                break;
             }
             return ret;
         }
@@ -346,72 +353,75 @@
     //        return n || 'data:image/gif;base64,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';
     //    }
     //})
-     // 系统提示功能
-    .provider("sysAlter", function () {
+    // 系统提示功能
+    .provider("sysAlter", function() {
         var defaults = {
             title: '系统提示',
             content: '',
             placement: 'top', // 默认位置
-            type: 'info',// 默认样式
-            duration: 3,// 提醒时间
+            type: 'info', // 默认样式
+            duration: 3, // 提醒时间
             //container: '#alterPannel'
         };
-        this.$get = ['$alert', function ($alert) {
-            var sysAlterFactory = function (options, type) {
-                if (angular.isString(options) || options == undefined) {
-                    defaults.content = options || '正在查询数据，请稍等...';
-                    defaults.type = type || 'info';
-                } else {
-                    defaults = angular.extend({}, defaults, options);
+        this.$get = [
+            '$alert', function($alert) {
+                var sysAlterFactory = function(options, type) {
+                    if (angular.isString(options) || options == undefined) {
+                        defaults.content = options || '正在查询数据，请稍等...';
+                        defaults.type = type || 'info';
+                    } else {
+                        defaults = angular.extend({}, defaults, options);
+                    }
+                    return $alert(defaults);
                 }
-                return $alert(defaults);
+                return sysAlterFactory;
             }
-            return sysAlterFactory;
-        }];
+        ];
     })
     // 通用确认提示框
-    .directive('dfheDeleteconfirm', ['$modal', 'apiService', 'sysAlter', function ($modal, apiService, sysAlter) {
-        return {
-            restrict: 'AEC',
-            controller: function ($scope) {
-                $scope.title = '操作确认';
-                $scope.content = '确认执行此操作吗？';
-                $scope.deleteByPrimaryID = function () {
-                    var alert = sysAlter('正在操作，请稍等...');
-                    apiService.delete({
-                        controller: $scope.controller,
-                        action: $scope.action,
-                        primaryID: $scope.primaryID
-                    }, function (res) {
-                        if (res) {
-                            if (res.Result == 1) {
-                                sysAlter("操作成功", 'success');
-                                $scope.$emit('ui-refresh', true);
+    .directive('dfheDeleteconfirm', [
+        '$modal', 'apiService', 'sysAlter', function($modal, apiService, sysAlter) {
+            return {
+                restrict: 'AEC',
+                controller: function($scope) {
+                    $scope.title = '操作确认';
+                    $scope.content = '确认执行此操作吗？';
+                    $scope.deleteByPrimaryID = function() {
+                        var alert = sysAlter('正在操作，请稍等...');
+                        apiService.delete({
+                            controller: $scope.controller,
+                            action: $scope.action,
+                            primaryID: $scope.primaryID
+                        }, function(res) {
+                            if (res) {
+                                if (res.Result == 1) {
+                                    sysAlter("操作成功", 'success');
+                                    $scope.$emit('ui-refresh', true);
+                                } else
+                                    sysAlter(res.ErrorMsg, 'danger');
                             }
-                            else
-                                sysAlter(res.ErrorMsg, 'danger');
-                        }
-                    }, function (err) {
-                        sysAlter(JSON.stringify(err), 'danger');
+                        }, function(err) {
+                            sysAlter(JSON.stringify(err), 'danger');
+                        });
+                    }
+                },
+                link: function(scope, element, attr) {
+                    element.on('click', function() {
+                        // 主键ID
+                        scope.primaryID = attr.id;
+                        // 服务地址信息
+                        scope.controller = attr.controller;
+                        scope.action = attr.action;
+                        var mymodal = $modal({
+                            scope: scope,
+                            animation: 'am-fade-and-scale',
+                            title: '操作确认',
+                            content: '确认执行此操作吗？',
+                            template: 'modal/dfhe.modal.confirm.html',
+                            show: true
+                        });
                     });
                 }
-            },
-            link: function (scope, element, attr) {
-                element.on('click', function () {
-                    // 主键ID
-                    scope.primaryID = attr.id;
-                    // 服务地址信息
-                    scope.controller = attr.controller;
-                    scope.action = attr.action;
-                    var mymodal = $modal({
-                        scope: scope,
-                        animation: 'am-fade-and-scale',
-                        title: '操作确认',
-                        content: '确认执行此操作吗？',
-                        template: 'modal/dfhe.modal.confirm.html',
-                        show: true
-                    });
-                });
             }
         }
-    }]);
+    ]);

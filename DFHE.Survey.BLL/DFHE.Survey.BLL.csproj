@@ -64,6 +64,7 @@
     <Compile Include="SurveyResultService.cs">
       <DependentUpon>BLL.tt</DependentUpon>
     </Compile>
+    <Compile Include="TemplateService.cs" />
     <Compile Include="UserInfoService.cs">
       <DependentUpon>BLL.tt</DependentUpon>
     </Compile>

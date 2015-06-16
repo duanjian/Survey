@@ -1,0 +1,48 @@
+﻿<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="modal-title">新增模版</h4>
+            </div>
+            <div class="modal-body">
+                <div class="span5">
+                    <form id="form_add" ng-submit="insertTmpl()">
+                        <div class="control-group">
+                            <label class="control-label">模版名称:</label>
+                            <div class="controls">
+                                <input type="text" class="span5" ng-model="template.TmplTitle" placeholder="模版名称" required>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">模版描述:</label>
+                            <div class="controls">
+
+                                <textarea class="span5" style="margin: 0px; width: 100%; height: 77px;" ng-model="template.TmplDescription" placeholder="模版描述（最多50个字）" required maxlength="50"></textarea>
+                            </div>
+                        </div>
+                        <!-- <div class="control-group">
+                                 <label class="control-label">姓名：</label>
+                                 <div class="controls">
+                                     <input type="text" class="span5" placeholder="姓名" ng-model = "userInfo.RealName" required>
+                                 </div>
+                             </div>-->
+                        <div class="control-group">
+                            <label class="control-label">模版文件:</label>
+                            <div class="controls">
+                                <input type="file" ng-file-select="onFileSelect($files)" ngf-accept="'.zip"/>
+                            </div>
+                            <label style="color:red;" ng-show="isEmpty">文件为空或文件类型错误</label>
+                            <label><a href="/api/Template/DownloadTemplate/0" target="blank"><i class="icon-download-alt"></i></a> PS: 点击图标可下载模版示例，请按照示例打包模版文件，并压缩为.zip压缩包后上传！</label>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" form="form_add">保存</button>
+                <button type="button" class="btn btn-default" ng-click="$hide()">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

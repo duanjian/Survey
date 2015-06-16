@@ -22,6 +22,8 @@
             _this.rootScope.EmployeeInfo = _this.loginInfo;
             _this.rootScope.logout = function () { _this.authService.logout(); };
             _this.scope.ret = {};
+            _this.scope.templates = {};
+            _this.scope.selectedTmpl = {};
             _this.scope.step1 = true;
             _this.scope.step2 = false;
             _this.scope.selectedInfo = [];
@@ -34,6 +36,7 @@
             //_this.scope.optionInfos = [];
             //_this.scope.optionInfo = {};
             _this._registerMethod();
+            _this.scope.getTemplateInfo();
         },
         //监视
         _watch: function () {
@@ -44,6 +47,24 @@
         },
         _registerMethod: function () {
             var _this = this;
+
+            _this.scope.getTemplateInfo = function() {
+                _this.apiService.get({
+                    controller: 'Template',
+                    action: 'GetTemplateList'
+                }, function (res) {
+                    if (res.Result == 1) {
+                        //angular.forEach(res.Data, function (v, k) {
+                        //    v.StaticUrl = "http://" + location.host + '/' + v.StaticUrl;
+                        //});
+                        _this.scope.templates = res.Data;
+                        _this.scope.selectedTmpl = _this.scope.templates[0];
+
+                    }
+                }, function (res) {
+
+                });
+            },
             _this.scope.createQuestions = function () {
                 _this.scope.questions.length = 0;
                 for (var i = 0; i < _this.scope.SurveyInfo.QuestionCount; i++) {
@@ -73,7 +94,8 @@
                     SurveyInfo: _this.scope.SurveyInfo,
                     QuestionInfo: _this.scope.questions,
                     RequiredInfo: _this.scope.SelectedRequiredInfo,
-                    UserName: _this.rootScope.EmployeeInfo.UserName
+                    UserName: _this.rootScope.EmployeeInfo.UserName,
+                    TemplateId: _this.scope.selectedTmpl.TmplId,
                 }
                 _this.loadingModal.show();
 

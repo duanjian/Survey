@@ -15,5 +15,7 @@ namespace DFHE.Survey.Model
         public List<int> RequiredInfo { get; set; } 
 
         public string UserName { get; set; }
+
+        public  int TemplateId { get; set; }
     }
 }

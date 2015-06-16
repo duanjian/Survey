@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DFHESurveyModelStoreContainer" CdmEntityContainer="Entities">
-    <EntitySetMapping Name="OptionInfoes">
-      <EntityTypeMapping TypeName="DFHE.SurveyModel.OptionInfo">
+    <EntitySetMapping Name="OptionInfo">
+      <EntityTypeMapping TypeName="DFHE.Survey.Model.OptionInfo">
         <MappingFragment StoreEntitySet="OptionInfo">
           <ScalarProperty Name="OptionId" ColumnName="OptionId" />
           <ScalarProperty Name="QuesionId" ColumnName="QuesionId" />
@@ -13,22 +13,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="QuestionInfoes">
-      <EntityTypeMapping TypeName="DFHE.SurveyModel.QuestionInfo">
+    <EntitySetMapping Name="QuestionInfo">
+      <EntityTypeMapping TypeName="DFHE.Survey.Model.QuestionInfo">
         <MappingFragment StoreEntitySet="QuestionInfo">
-          <ScalarProperty Name="IsOrientation" ColumnName="IsOrientation" />
           <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
           <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
           <ScalarProperty Name="QuestionTitle" ColumnName="QuestionTitle" />
           <ScalarProperty Name="QuestionOptionsCount" ColumnName="QuestionOptionsCount" />
           <ScalarProperty Name="RequiredOptionsCount" ColumnName="RequiredOptionsCount" />
+          <ScalarProperty Name="IsOrientation" ColumnName="IsOrientation" />
           <ScalarProperty Name="Deleted" ColumnName="Deleted" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RespondentInfoes">
-      <EntityTypeMapping TypeName="DFHE.SurveyModel.RespondentInfo">
+    <EntitySetMapping Name="RespondentInfo">
+      <EntityTypeMapping TypeName="DFHE.Survey.Model.RespondentInfo">
         <MappingFragment StoreEntitySet="RespondentInfo">
           <ScalarProperty Name="RespondentId" ColumnName="RespondentId" />
           <ScalarProperty Name="RespondentName" ColumnName="RespondentName" />
@@ -47,8 +47,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SurveyInfoes">
-      <EntityTypeMapping TypeName="DFHE.SurveyModel.SurveyInfo">
+    <EntitySetMapping Name="SurveyInfo">
+      <EntityTypeMapping TypeName="DFHE.Survey.Model.SurveyInfo">
         <MappingFragment StoreEntitySet="SurveyInfo">
           <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
           <ScalarProperty Name="SurveyName" ColumnName="SurveyName" />
@@ -56,6 +56,7 @@
           <ScalarProperty Name="SurveyStatus" ColumnName="SurveyStatus" />
           <ScalarProperty Name="StaticUrl" ColumnName="StaticUrl" />
           <ScalarProperty Name="RequiredInfos" ColumnName="RequiredInfos" />
+          <ScalarProperty Name="TmplId" ColumnName="TmplId" />
           <ScalarProperty Name="CreateId" ColumnName="CreateId" />
           <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
           <ScalarProperty Name="UpDateTime" ColumnName="UpDateTime" />
@@ -64,8 +65,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SurveyResults">
-      <EntityTypeMapping TypeName="DFHE.SurveyModel.SurveyResult">
+    <EntitySetMapping Name="SurveyResult">
+      <EntityTypeMapping TypeName="DFHE.Survey.Model.SurveyResult">
         <MappingFragment StoreEntitySet="SurveyResult">
           <ScalarProperty Name="SurveyResultId" ColumnName="SurveyResultId" />
           <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
@@ -76,8 +77,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserInfoes">
-      <EntityTypeMapping TypeName="DFHE.SurveyModel.UserInfo">
+    <EntitySetMapping Name="TemplateInfo">
+      <EntityTypeMapping TypeName="DFHE.Survey.Model.TemplateInfo">
+        <MappingFragment StoreEntitySet="TemplateInfo">
+          <ScalarProperty Name="TmplId" ColumnName="TmplId" />
+          <ScalarProperty Name="TmplTitle" ColumnName="TmplTitle" />
+          <ScalarProperty Name="TmplDescription" ColumnName="TmplDescription" />
+          <ScalarProperty Name="PreviewUrl" ColumnName="PreviewUrl" />
+          <ScalarProperty Name="StoredName" ColumnName="StoredName" />
+          <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="DFHE.Survey.Model.UserInfo">
         <MappingFragment StoreEntitySet="UserInfo">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />

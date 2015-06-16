@@ -7357,6 +7357,30 @@
     <File Include="Assets/js/angular-1.3.4/version.txt">
       <publishTime>01/23/2015 13:53:00</publishTime>
     </File>
+    <File Include="Assets/js/angular-file-upload/angular-file-upload-all.js">
+      <publishTime>05/05/2015 13:54:30</publishTime>
+    </File>
+    <File Include="Assets/js/angular-file-upload/angular-file-upload-all.min.js">
+      <publishTime>05/05/2015 13:54:30</publishTime>
+    </File>
+    <File Include="Assets/js/angular-file-upload/angular-file-upload-shim.js">
+      <publishTime>05/05/2015 13:54:30</publishTime>
+    </File>
+    <File Include="Assets/js/angular-file-upload/angular-file-upload-shim.min.js">
+      <publishTime>05/05/2015 13:54:30</publishTime>
+    </File>
+    <File Include="Assets/js/angular-file-upload/angular-file-upload.js">
+      <publishTime>05/05/2015 13:54:30</publishTime>
+    </File>
+    <File Include="Assets/js/angular-file-upload/angular-file-upload.min.js">
+      <publishTime>05/05/2015 13:54:30</publishTime>
+    </File>
+    <File Include="Assets/js/angular-file-upload/FileAPI.flash.swf">
+      <publishTime>05/05/2015 13:54:30</publishTime>
+    </File>
+    <File Include="Assets/js/angular-file-upload/FileAPI.min.js">
+      <publishTime>05/05/2015 13:54:30</publishTime>
+    </File>
     <File Include="Assets/js/angular-strap-2.1.4/angular-strap.js">
       <publishTime>01/23/2015 16:57:50</publishTime>
     </File>
@@ -7658,7 +7682,7 @@
       <publishTime>01/23/2015 13:52:46</publishTime>
     </File>
     <File Include="Assets/js/Base64.js">
-      <publishTime>01/23/2015 13:52:46</publishTime>
+      <publishTime>05/11/2015 09:11:32</publishTime>
     </File>
     <File Include="Assets/js/bootstrap-colorpicker.js">
       <publishTime>01/23/2015 13:44:30</publishTime>
@@ -7778,31 +7802,34 @@
       <publishTime>01/23/2015 11:32:16</publishTime>
     </File>
     <File Include="bin/DFHE.Survey.API.dll">
-      <publishTime>04/24/2015 17:27:56</publishTime>
+      <publishTime>05/11/2015 10:13:26</publishTime>
     </File>
     <File Include="bin/DFHE.Survey.BLL.dll">
-      <publishTime>04/24/2015 17:27:48</publishTime>
+      <publishTime>05/11/2015 10:13:25</publishTime>
     </File>
     <File Include="bin/DFHE.Survey.DAL.dll">
-      <publishTime>04/24/2015 17:27:51</publishTime>
+      <publishTime>05/11/2015 10:02:08</publishTime>
     </File>
     <File Include="bin/DFHE.Survey.IBLL.dll">
-      <publishTime>04/23/2015 17:31:08</publishTime>
+      <publishTime>05/06/2015 17:35:11</publishTime>
     </File>
     <File Include="bin/DFHE.Survey.IDAL.dll">
-      <publishTime>04/23/2015 17:31:09</publishTime>
+      <publishTime>05/06/2015 17:35:11</publishTime>
     </File>
     <File Include="bin/DFHE.Survey.Model.dll">
-      <publishTime>04/23/2015 17:31:08</publishTime>
+      <publishTime>05/06/2015 17:35:10</publishTime>
     </File>
     <File Include="bin/DFHE.Survey.Utility.dll">
-      <publishTime>04/24/2015 17:27:46</publishTime>
+      <publishTime>05/11/2015 10:02:08</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>01/23/2015 11:05:12</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>01/23/2015 11:05:12</publishTime>
+    </File>
+    <File Include="bin/Ionic.Zip.dll">
+      <publishTime>05/05/2015 16:54:23</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>03/10/2015 10:22:17</publishTime>
@@ -7985,7 +8012,7 @@
       <publishTime>01/29/2015 09:29:50</publishTime>
     </File>
     <File Include="dashboard.html">
-      <publishTime>03/25/2015 14:09:52</publishTime>
+      <publishTime>05/05/2015 13:27:52</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>01/23/2015 10:29:04</publishTime>
@@ -7994,40 +8021,112 @@
       <publishTime>01/23/2015 10:29:04</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>04/24/2015 14:06:13</publishTime>
+      <publishTime>05/11/2015 09:11:09</publishTime>
     </File>
     <File Include="login.html">
       <publishTime>03/25/2015 14:01:33</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>03/26/2015 10:30:17</publishTime>
+      <publishTime>05/05/2015 17:12:01</publishTime>
     </File>
     <File Include="scripts/common.js">
-      <publishTime>04/24/2015 17:23:23</publishTime>
+      <publishTime>05/11/2015 09:29:19</publishTime>
     </File>
     <File Include="scripts/loginCtrl.js">
-      <publishTime>04/24/2015 17:22:27</publishTime>
+      <publishTime>05/05/2015 14:46:11</publishTime>
+    </File>
+    <File Include="statics/tmpl/template.zip">
+      <publishTime>05/06/2015 15:22:13</publishTime>
     </File>
     <File Include="statics/tmpl/wapTmpl.html">
-      <publishTime>04/23/2015 10:11:24</publishTime>
+      <publishTime>05/11/2015 10:10:39</publishTime>
+    </File>
+    <File Include="statics/tmplExample/base.css">
+      <publishTime>01/29/2015 09:31:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/common.css">
+      <publishTime>01/29/2015 09:29:49</publishTime>
+    </File>
+    <File Include="statics/tmplExample/example.zip">
+      <publishTime>05/06/2015 15:23:09</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/action-border-left.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/action-border-right.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/alter.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/buttonsplit.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/end.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/header-ico.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/header-title.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/header.jpg">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/index-content-bg.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/index-content-subject.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/option-flag-selected.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/option-flag.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/question-done.jpg">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/shenfen.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/start-button.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/start.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/survey-content-subject.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/Thumbs.db">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/tip-bg.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
+    </File>
+    <File Include="statics/tmplExample/image/tip.png">
+      <publishTime>01/29/2015 09:29:50</publishTime>
     </File>
     <File Include="SurveyManagement/CreateSurvey.html">
-      <publishTime>04/23/2015 14:29:51</publishTime>
+      <publishTime>05/07/2015 10:03:37</publishTime>
     </File>
     <File Include="SurveyManagement/js/CreateSurveyCtrl.js">
-      <publishTime>04/24/2015 14:48:43</publishTime>
+      <publishTime>05/07/2015 10:00:08</publishTime>
     </File>
     <File Include="SurveyManagement/js/SurveyInfoCtrl.js">
-      <publishTime>04/23/2015 14:47:17</publishTime>
+      <publishTime>05/07/2015 10:16:11</publishTime>
     </File>
     <File Include="SurveyManagement/js/SurveyListCtrl.js">
-      <publishTime>04/24/2015 14:47:41</publishTime>
+      <publishTime>05/05/2015 15:01:24</publishTime>
     </File>
     <File Include="SurveyManagement/SurveyInfo.html">
-      <publishTime>03/25/2015 16:17:16</publishTime>
+      <publishTime>05/07/2015 10:04:48</publishTime>
     </File>
     <File Include="SurveyManagement/SurveyList.html">
-      <publishTime>03/25/2015 16:16:51</publishTime>
+      <publishTime>05/06/2015 16:40:36</publishTime>
     </File>
     <File Include="SurveyResultManagement/js/ResultListCtrl.js">
       <publishTime>04/23/2015 13:07:18</publishTime>
@@ -8045,16 +8144,25 @@
       <publishTime>02/26/2015 16:11:44</publishTime>
     </File>
     <File Include="SystemManagement/tmpl/CreateUser.html">
-      <publishTime>01/26/2015 11:04:47</publishTime>
+      <publishTime>05/04/2015 13:50:43</publishTime>
     </File>
     <File Include="SystemManagement/UserList.html">
       <publishTime>02/26/2015 16:32:42</publishTime>
     </File>
+    <File Include="TemplateManagement/js/TemplateListCtrl.js">
+      <publishTime>05/07/2015 14:26:25</publishTime>
+    </File>
+    <File Include="TemplateManagement/TemplateList.html">
+      <publishTime>05/07/2015 13:39:38</publishTime>
+    </File>
     <File Include="Templates/_loadingModal.html">
       <publishTime>01/29/2015 11:35:48</publishTime>
     </File>
+    <File Include="Templates/_uploadTmplModal.html">
+      <publishTime>05/07/2015 14:14:09</publishTime>
+    </File>
     <File Include="Web.config">
-      <publishTime>04/24/2015 17:29:22</publishTime>
+      <publishTime>05/11/2015 10:13:30</publishTime>
     </File>
   </ItemGroup>
 </Project>

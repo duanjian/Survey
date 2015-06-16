@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="DFHE.SurveyModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="DFHE.Survey.Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
-    <EntitySet Name="OptionInfoes" EntityType="DFHE.SurveyModel.OptionInfo" />
-    <EntitySet Name="QuestionInfoes" EntityType="DFHE.SurveyModel.QuestionInfo" />
-    <EntitySet Name="RespondentInfoes" EntityType="DFHE.SurveyModel.RespondentInfo" />
-    <EntitySet Name="SurveyInfoes" EntityType="DFHE.SurveyModel.SurveyInfo" />
-    <EntitySet Name="SurveyResults" EntityType="DFHE.SurveyModel.SurveyResult" />
-    <EntitySet Name="UserInfoes" EntityType="DFHE.SurveyModel.UserInfo" />
+    <EntitySet Name="OptionInfo" EntityType="DFHE.Survey.Model.OptionInfo" />
+    <EntitySet Name="QuestionInfo" EntityType="DFHE.Survey.Model.QuestionInfo" />
+    <EntitySet Name="RespondentInfo" EntityType="DFHE.Survey.Model.RespondentInfo" />
+    <EntitySet Name="SurveyInfo" EntityType="DFHE.Survey.Model.SurveyInfo" />
+    <EntitySet Name="SurveyResult" EntityType="DFHE.Survey.Model.SurveyResult" />
+    <EntitySet Name="TemplateInfo" EntityType="DFHE.Survey.Model.TemplateInfo" />
+    <EntitySet Name="UserInfo" EntityType="DFHE.Survey.Model.UserInfo" />
   </EntityContainer>
   <EntityType Name="OptionInfo">
     <Key>
@@ -28,9 +29,9 @@
     <Property Name="QuestionTitle" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
     <Property Name="QuestionOptionsCount" Type="Int32" Nullable="false" />
     <Property Name="RequiredOptionsCount" Type="Int32" Nullable="false" />
+    <Property Name="IsOrientation" Type="Boolean" />
     <Property Name="Deleted" Type="Boolean" Nullable="false" />
     <Property Name="Remark" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-    <Property Type="Boolean" Name="IsOrientation" />
   </EntityType>
   <EntityType Name="RespondentInfo">
     <Key>
@@ -61,6 +62,7 @@
     <Property Name="SurveyStatus" Type="Int32" Nullable="false" />
     <Property Name="StaticUrl" Type="String" Nullable="false" MaxLength="512" Unicode="true" FixedLength="false" />
     <Property Name="RequiredInfos" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+    <Property Name="TmplId" Type="Int32" />
     <Property Name="CreateId" Type="Int32" Nullable="false" />
     <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="UpDateTime" Type="DateTime" Precision="3" />
@@ -77,6 +79,20 @@
     <Property Name="QuestionId" Type="Int32" Nullable="false" />
     <Property Name="SelectedOptions" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
     <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TemplateInfo">
+    <Key>
+      <PropertyRef Name="TmplId" />
+    </Key>
+    <Property Name="TmplId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TmplTitle" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property Name="TmplDescription" Type="String" MaxLength="512" Unicode="true" FixedLength="false" />
+    <Property Name="PreviewUrl" Type="String" MaxLength="512" Unicode="true" FixedLength="false" />
+    <Property Name="StoredName" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="CreateId" Type="Int32" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Deleted" Type="Boolean" />
+    <Property Name="Remark" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
   </EntityType>
   <EntityType Name="UserInfo">
     <Key>

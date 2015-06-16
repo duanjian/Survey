@@ -29,9 +29,9 @@
                                             <div class="DataTables_sort_wrapper">题目数量<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div>
                                         </th>
 
-                                        <!-- <th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 120px;" aria-label="Platform(s): activate to sort column ascending">
-                                                 <div class="DataTables_sort_wrapper">问卷状态<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div>
-                                             </th>-->
+                                         <th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;" aria-label="Platform(s): activate to sort column ascending">
+                                                 <div class="DataTables_sort_wrapper">问卷模版<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div>
+                                             </th>
                                         <th class="ui-state-default" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 120px;" aria-label="Engine version: activate to sort column ascending">
                                             <div class="DataTables_sort_wrapper">
                                                 创建人<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
@@ -57,7 +57,7 @@
                                         <td class=" sorting_1">{{$index + 1}}</td>
                                         <td class=" sorting_2"><a href="javascript:void(0)">{{ survey.SurveyName }}</a> </td>
                                         <td class="">{{survey.QuestionCount}}</td>
-                                        <!--<td class="">1.1</td>-->
+                                        <td class="">{{survey.TemplateName}}</td>
                                         <td class="center">{{survey.CreateName}}
                                         </td>
                                         <td class="center">

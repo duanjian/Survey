@@ -1,0 +1,62 @@
+﻿body{ background:#e9e7e7;}
+.header{height:128px;background:#2461b1 url(image/header.jpg) no-repeat;}
+/*.header{ background:#2461b1; position:relative}
+.header .title{height:149px; background:url(image/header-title.png) no-repeat;margin-left:28px}
+.header .icon{background:url(image/header-ico.png) no-repeat; width:219px; height:177px; position:absolute;right:0px; top:16px;}*/
+.wrapper{margin:0 auto;padding:0;}
+/*.wrapper .subject{height:145px; width:553px;border-bottom:solid 1px #bebebe;margin:0 auto;}*/
+.wrapper .subject{height:40px;background: #f0f0f1;font:2em "微软雅黑";color: #919191; text-align: right; padding-right: 20px;}
+.result,.sign,.question{display:none;}
+
+/*默认home*/
+/*
+.home .subject{background:url(image/index-content-subject.png) center center no-repeat;}
+.home .content{background:url(image/index-content-bg.png) center center no-repeat; height:492px;}
+.home .action{height:88px;}
+.home .action .button-link{height:88px; display:block; width:100%; background:#2461b1; font-family:微软雅黑;font-size:24px;color:#FFF; text-align:center; line-height:88px; text-decoration:none;}
+*/
+/*欢迎页*/
+.blockPage .start{height:431px;width:591px;background: url(image/start.png) no-repeat center center; margin-left: -267px; position: relative;}
+.blockPage .start .button-link{position:absolute;bottom:14px;width:336px;left:130px; height: 74px;color: #fff;background: url(image/start-button.png) no-repeat center center;font:2em "微软雅黑"; text-align: center; line-height: 2em;margin:0 auto;}
+/*结束页*/
+.blockPage .end{height:431px;width:591px;background: url(image/end.png) no-repeat center center; position: relative;}
+.blockPage .end .button-link{position:absolute;bottom:14px;width:336px;left:130px; height: 74px;color: #fff;background: url(image/start-button.png) no-repeat center center;font:2em "微软雅黑"; text-align: center; line-height: 2em;margin:0 auto;}
+/*弹出框*/
+.blockPage .alert{height:431px;width:591px;background: url(image/alter.png) no-repeat center center; position: relative;}
+.blockPage .alert .text{top:200px;position: absolute;font:2em "微软雅黑"; color: #07408b; width:344px;left:141px;}
+.blockPage .alert .button-link{position:absolute;bottom:14px;width:336px;left:130px; height: 74px;color: #fff;background: url(image/start-button.png) no-repeat center center;font:2em "微软雅黑"; text-align: center; line-height: 2em;margin:0 auto;}
+/*开始测试-调查*/
+/*.survey .subject{background:url(image/survey-content-subject.png) center center no-repeat; }*/
+.survey .content{ font-family:微软雅黑;padding:0px;padding-left:43px;padding-right:43px;margin-top:45px;}
+.survey .content .question-item{}
+.survey .content .question-item h1{ font:2em "微软雅黑"; color:#131313; line-height: 2em;}
+.survey .content .question-item ul,.survey .content .question-item ul li{list-style: none;}
+.survey .content .question-item ul li{color:#535353;line-height:75px;}
+.survey .content .question-item ul li label{ font:1.8em "微软雅黑";color:#535353; line-height: 101px; display: block;}
+.survey .content .question-item ul li span{ font:1.2em "微软雅黑";color:#2461b1; line-height: 75px;}
+.survey .content .question-item ul li.option-first{padding-top:26px;}
+.survey .content .question-item ul li input{display: none;}
+.survey .content .question-item ul li span.crcl{display:inline-block;width:60px; background:url(image/option-flag.png) left center no-repeat;text-align:center;margin-right:20px;}
+.survey .content .question-item ul li span.crclsel{background:url(image/option-flag-selected.png) left center no-repeat;color:#fff;}
+.survey .content .question-item .question-done{margin-top:20px;font:1.5em "微软雅黑";line-height:88px;color:#fff;text-align:center;background-image: url(image/question-done.jpg); background-position: center center; background-repeat: no-repeat; background-color:transparent; height: 88px;width:565px;}
+.survey .content .question-item .question-done a{font:1.5em "微软雅黑";color:#fff; text-decoration: none; line-height: 88px; display:inline-block; height: 88px;width:252px;}
+.survey .content .question-item .question-done .last{background: url(image/buttonsplit.png) no-repeat right center;}
+
+
+
+/*调查完毕，填写基本信息*/
+.survey .content .listitem{width:560px;margin:0 auto; line-height:100px;}
+.survey .content .listitem-desc{background:url(image/shenfen.png) center center no-repeat;height:103px;}
+.survey .content .listitem-info .text{ line-height:100px; color:#535353; width:149px;font:29px "微软雅黑"; display:inline-block; text-align:right;}
+.survey .content .listitem-info input,.survey .content .listitem-info select{-webkit-appearance: none;height:68px;line-height:68px; border:solid 1px #d5d5d5; border-shadow:2px;  width:322px;font-size:29px; font-family:微软雅黑;}
+.survey .content .listitem-tip{ height:60px;line-height:30px; font-size:29px; font-family:微软雅黑; color:#d0213e;padding-left:100px;}
+.survey .action{height:88px;}
+.survey .action .command-button{-webkit-appearance: none;height:88px; display:block; width:100%; background:#2461b1; font:2em "微软雅黑";color:#FFF; text-align:center; line-height:88px; text-decoration:none;border:none;}
+
+/*信息提交完成*/
+.done .subject{background:url(image/survey-content-subject.png) center center no-repeat; }
+.done .content {padding-top:60px;}
+.done .content .message{height:64px;line-height:64px;width:583px;font-size:26px;font-family:微软雅黑;color:#2461b1; background:url(image/tip-bg.png) center center repeat-x;margin:0 auto;text-align:center;}
+.done .content .tip{margin:0 auto;background:url(image/tip.png) center center no-repeat; height:145px; margin-bottom:50px;margin-top:30px;}
+.done .content .action{height:88px;}
+.done .content .action .command-button{-webkit-appearance: none;height:88px; display:block; width:100%; background:#2461b1; font:2em "微软雅黑";color:#FFF; text-align:center; line-height:88px; text-decoration:none;border:none;}

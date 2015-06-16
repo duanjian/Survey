@@ -25,11 +25,12 @@ namespace DFHE.Survey.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<OptionInfo> OptionInfoes { get; set; }
-        public DbSet<QuestionInfo> QuestionInfoes { get; set; }
-        public DbSet<RespondentInfo> RespondentInfoes { get; set; }
-        public DbSet<SurveyInfo> SurveyInfoes { get; set; }
-        public DbSet<SurveyResult> SurveyResults { get; set; }
-        public DbSet<UserInfo> UserInfoes { get; set; }
+        public DbSet<OptionInfo> OptionInfo { get; set; }
+        public DbSet<QuestionInfo> QuestionInfo { get; set; }
+        public DbSet<RespondentInfo> RespondentInfo { get; set; }
+        public DbSet<SurveyInfo> SurveyInfo { get; set; }
+        public DbSet<SurveyResult> SurveyResult { get; set; }
+        public DbSet<TemplateInfo> TemplateInfo { get; set; }
+        public DbSet<UserInfo> UserInfo { get; set; }
     }
 }

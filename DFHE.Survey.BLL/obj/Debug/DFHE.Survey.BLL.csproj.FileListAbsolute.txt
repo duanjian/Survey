@@ -58,3 +58,5 @@ C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.BLL\bin
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.BLL\obj\Debug\DFHE.Survey.BLL.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.BLL\obj\Debug\DFHE.Survey.BLL.dll
 C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.BLL\obj\Debug\DFHE.Survey.BLL.pdb
+C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.BLL\bin\Debug\Ionic.Zip.dll
+C:\Users\Administrator\Desktop\Survey\SourceCode\DFHE.Survey\DFHE.Survey.BLL\bin\Debug\Ionic.Zip.xml

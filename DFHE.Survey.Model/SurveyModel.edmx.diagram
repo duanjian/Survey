@@ -4,13 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c3c8c3c45662421b85fcc22f0fc77c33" Name="关系图1">
-        <EntityTypeShape EntityType="DFHE.SurveyModel.OptionInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DFHE.SurveyModel.QuestionInfo" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DFHE.SurveyModel.RespondentInfo" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DFHE.SurveyModel.SurveyInfo" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DFHE.SurveyModel.SurveyResult" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DFHE.SurveyModel.UserInfo" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+      <Diagram DiagramId="4478795325af482b8391772d9b71bb3f" Name="关系图1">
+        <EntityTypeShape EntityType="DFHE.Survey.Model.OptionInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DFHE.Survey.Model.QuestionInfo" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DFHE.Survey.Model.RespondentInfo" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DFHE.Survey.Model.SurveyInfo" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DFHE.Survey.Model.SurveyResult" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DFHE.Survey.Model.TemplateInfo" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DFHE.Survey.Model.UserInfo" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

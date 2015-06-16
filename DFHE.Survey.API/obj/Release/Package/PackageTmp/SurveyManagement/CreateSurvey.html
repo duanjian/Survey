@@ -18,24 +18,31 @@
                                 <div class="control-group">
                                     <label class="control-label">问卷标题 :</label>
                                     <div class="controls">
-                                        <input type="text" class="span9" placeholder="问卷标题(最多30个字)" required ng-model="SurveyInfo.SurveyName" maxlength ="30"/>
+                                        <input type="text" class="span9" placeholder="问卷标题(最多30个字)" required ng-model="SurveyInfo.SurveyName" maxlength="30" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">题目数量 :</label>
                                     <div class="controls">
-                                        <input type="number" class="span2" placeholder="题目数量" ng-model="SurveyInfo.QuestionCount" required min="1"/>
+                                        <input type="number" class="span2" placeholder="题目数量" ng-model="SurveyInfo.QuestionCount" required min="1" />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">需填信息 :</label>
                                     <div class="controls">
-                                        <button type="button" class="btn btn-default span4" data-max-length="11" data-allText ="全部" data-max-length-html="已选择" placeholder="请选择" ng-model="SelectedRequiredInfo" data-html="1"  data-multiple="1" data-animation="am-flip-x" ng-options="require.key as require.value for require in requireInfo" bs-select>
+                                        <button type="button" class="btn btn-default span4" data-max-length="11" data-alltext="全部" data-max-length-html="已选择" placeholder="请选择" ng-model="SelectedRequiredInfo" data-html="1" data-multiple="1" data-animation="am-flip-x" ng-options="require.key as require.value for require in requireInfo" bs-select>
                                             <span class="caret"></span>
                                         </button>
-                                        <label style ="padding-top: 5px; color:red;" ng-show ="hasInfo">请至少选择一项需填信息</label>
+                                        <label style="padding-top: 5px; color: red;" ng-show="hasInfo">请至少选择一项需填信息</label>
 
-                                    </div>                                       
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">显示模版 :</label>
+                                    <div class="controls">
+                                        <select ng-model="selectedTmpl" ng-options="template.TmplTitle for template in templates"></select>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -45,13 +52,13 @@
                                 <div class="control-group" ng-repeat="question in questions">
                                     <label class="control-label">题目 {{$index + 1}} :</label>
                                     <div class="controls">
-                                        <textarea class="span11" style="margin: 0px; width: 300px; height: 77px;" ng-model="question.QuestionTitle" placeholder="题目内容（最多50个字）" required maxlength ="50"></textarea>
+                                        <textarea class="span11" style="margin: 0px; width: 300px; height: 77px;" ng-model="question.QuestionTitle" placeholder="题目内容（最多50个字）" required maxlength="50"></textarea>
                                     </div>
 
                                     <div class="control-group">
                                         <label class="control-label">定项选择 :</label>
                                         <div class="controls">
-                                            <input type="checkbox" ng-model="question.IsOrientation" value="true" checked ="checked"/>
+                                            <input type="checkbox" ng-model="question.IsOrientation" value="true" checked="checked" />
                                         </div>
                                     </div>
 
@@ -65,20 +72,20 @@
                                     <div class="control-group">
                                         <label class="control-label">需选数量 :</label>
                                         <div class="controls">
-                                            <input type="number" class="span2" placeholder="需选数量(1-26)" required min="1" max="{{question.QuestionOptionsCount}}" ng-model="question.RequiredOptionsCount"  ng-disabled ="!question.IsOrientation"/>
+                                            <input type="number" class="span2" placeholder="需选数量(1-26)" required min="1" max="{{question.QuestionOptionsCount}}" ng-model="question.RequiredOptionsCount" ng-disabled="!question.IsOrientation" />
                                         </div>
                                     </div>
-
-
 
                                     <div class="control-group">
                                         <div ng-repeat="option in question.Options">
                                             <label class="control-label">{{ $index + 1 | OptNumToChar}}: </label>
                                             <div class="controls">
-                                                <input type="text" class="span6" placeholder="选项{{$index + 1}}（最多20字）" required ng-model="option.OptionValue" maxlength ="20"/>
+                                                <input type="text" class="span6" placeholder="选项{{$index + 1}}（最多20字）" required ng-model="option.OptionValue" maxlength="20" />
                                             </div>
                                         </div>
                                     </div>
+
+
                                 </div>
                             </form>
                         </div>
